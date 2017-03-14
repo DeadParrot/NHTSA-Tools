@@ -1,0 +1,74 @@
+Change Log for NHTSA Tools Software Users
+
+________________________________________________________________________________
+2003/07/28
+
+Dimensional Systems:
+. Added support for a pure SI dimensional system: m, m/s, m/s^2, kg, N
+. Support RADIAN or DEGREE based rotational units:
+  . Doesn't automatically convert to DEGREE-based units anymore
+. Units were updates as per current NHTSA Vehicle Test Reference Guide
+
+Filenames:
+. A .uds type extension is added for generated UDS file names and is
+  recognized but not required in input file names
+. Lengthened output file name display space to support long file names
+
+Additional minor updates and fixes.
+
+________________________________________________________________________________
+2001/03/04
+
+Added UDS_CONTROL_INIT function/calls and FILE_INIT calls for compatibility with
+platforms (such as f77 on IRIX) that do not automatically zero-initialize
+RECORDs.
+
+________________________________________________________________________________
+1999/08/07
+
+Fixed REP_ENTRY 4-digit vehicle YEAR support.
+
+Added work-around to Watcom FIND.C for readdir() bug on Win32.
+
+________________________________________________________________________________
+1999/05/02
+
+UDSDump update to fix minor flow logic bug.
+
+________________________________________________________________________________
+1997/12/20
+
+Improved FN_LOCAL for DOS-Unix file name conversions.
+
+________________________________________________________________________________
+1997/11/11
+
+Updated Mady2UDS with fix for i/o bug (wrong REWIND unit number).
+
+Updated PC OS executables with work-around for Watcom compiler bug.
+
+________________________________________________________________________________
+1997/10/01
+
+User-transparent source code and development system updates were made.
+
+________________________________________________________________________________
+1997/08/12
+
+Year 2000 support was incorporated into the Tools software.  Dates are now
+displayed in the ten character ISO standard format YYYY/MM/DD.  The UDSDump
+program also updated to display the YEAR and YEAR2 fields with four digits
+(UDS-1992 files should have four-digit YEAR and YEAR2 values).  Documentation
+and source code files were updated to contain dates in the ISO format.
+
+________________________________________________________________________________
+1997/04/18
+
+UDS programs on OpenVMS can now read UDS-1992 that are assigned the STREAM_LF
+file attribute.  UDS-1992 files have a fixed length 512 byte (FIXED-512) record
+format but UDS-1992 files served from non-OpenVMS systems or files "unzipped"
+from an archive can be assigned the STREAM_LF file attribute by the OpenVMS
+system.  The UDSATTR.COM command procedure can be used to correct the attributes
+of OpenVMS-resident UDS files.  UDS files will continue to be written with the
+correct FIXED-512 attributes.
+________________________________________________________________________________

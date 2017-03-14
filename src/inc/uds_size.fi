@@ -1,0 +1,23 @@
+!***********************************************************************
+!* UDS File Array Size Header
+!*
+!* Language: Fortran
+!*
+!* Author: Stuart G. Mentzer
+!*
+!* Date: 1999/08/20
+!***********************************************************************
+
+      ! UDS data array bounds
+      INTEGER NFP_L, NLP_U
+      PARAMETER ( NFP_L = -10000, NLP_U = 100000 )
+
+      ! Upward-rounded power of two bound (NLP_2 > NLP_U) (for FFT use)
+      INTEGER NLP_2
+      PARAMETER ( NLP_2 = 131072 )
+
+      ! Dummy structure to suppress unused/unreferenced warnings
+      STRUCTURE /UDS_SIZE_DUMMY/
+        REAL A(NFP_L:NLP_U)
+        REAL B(0:NLP_2)
+      END STRUCTURE

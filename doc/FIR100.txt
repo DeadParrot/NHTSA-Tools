@@ -1,0 +1,41 @@
+PROGRAM: FIR100				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  C. Gabler, J. Marcus
+
+PROGRAM FUNCTION AND METHODS:
+
+	FIR100 performs 100 Hz finite impulse response filtering of a UDS file
+	containing a digitized time series.  FIR100 is general purpose in
+	nature, but is used primarily to filter side impacted thoracic and
+	pelvic signals.
+
+	The program filters a signal using a four step process.  First, FIR100
+	uses a four-pole, zero-phase Butterworth filter with a 300 Hz cutoff.
+	This is done to prevent aliasing in the next step, subsampling to a
+	1600 Hz sampling rate.  After the anti-aliasing filter, the signal is
+	subsampled to exactly 1600 Hz.  (time between data samples = .000625
+	seconds). This is the required sampling rate for FIR100 to filter to
+	the correct frequencies.  At the user's option, any bias in the signal
+	is next removed.  Finally, the finite impulse response filter is
+	applied to the signal, and the signal is output in UDS format.
+
+	The resulting passband frequency is 100 Hz, the cutoff frequency is 136
+	Hz, the stopband frequency is 189 Hz, the passband ripple is 0.0225 dB,
+	and the stopband gain is -50 dB.
+
+	FIR100 started out life as the BIOPROC, and is the functional
+	equivalent of BIOPROC.  However, FIR100 has been updated to include a
+	more standard user interface (e.g. default output file names), NHTSA
+	standardized filtering software subroutines, and numerous code
+	modifications to enhance portability.  The BIAS, IIRFIL, and FIRF16
+	subroutines were coded by M.R. Neale of VRTC.
+
+
+PROGRAM FEATURES/OPTIONS:
+
+	o  FIR100 provides the user with option to remove bias from the signal.
+
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS time series file must be supplied to the program.

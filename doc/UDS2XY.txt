@@ -1,0 +1,15 @@
+PROGRAM: UDS2XY				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	UDS2XY converts two y-series UDS files into a UDS X-Y file.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Any y-series UDS file can be used for either the x or y axes.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	None.

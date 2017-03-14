@@ -1,0 +1,15 @@
+#!/bin/bash
+# NHTSA Linux GCC Setup
+
+if [ -z "$NHTSA" ]; then
+  export NHTSA=$(dirname $(dirname $(dirname $(dirname $(readlink -m "${BASH_SOURCE[0]}")))))
+fi
+
+export PlatformOS=Linux
+export PlatformCompiler=Linux/GCC
+
+export PATH=$PATH:$NHTSA/bin/$PlatformCompiler
+
+export CPATH=.:$NHTSA/src/inc/Linux/GCC:$NHTSA/src/inc/Linux:$NHTSA/src/inc:$CPATH
+
+source $NHTSA/bin/Linux/setProject

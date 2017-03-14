@@ -1,0 +1,41 @@
+PROGRAM: ASC2UDS			PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	ASC2UDS performs conversion of ASCII data files to UDS files.
+	ASCII files with multiple numeric columns and a non-numeric header
+	are supported.  The output UDS files can have Y or X-Y channel formats.
+	An existing UDS file can be used to provide the base specifications,
+	and the key UDS specification fields can be set/modified interactively.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Input ASCII files are analyzed to find the first numeric record and
+	the column structure of the numeric data.  A non-numeric header of
+	any length will be automatically skipped over.  ASC2UDS expects
+	numeric data in columns with the array index increasing by one for
+	each file record.  Up to 99 columns per record can be accessed.
+
+	The columns to use for the index, X, and Y data are specified by the
+	user.  An X data column is used for X-Y channel UDS files or to
+	compute the X data increment for Y channel files.  The index column
+	can contain any floating point or integer data that is a scaled
+	version of the data index, such as the evenly spaced X values of a Y
+	channel signal.  If the index data contains sufficient precision
+	ASC2UDS will determine the correct starting index and will check the
+	index of subsequent records.  An NFP value can be specified instead
+	of an index column to determine the starting data array index.  The
+	same column can be used for more than one data set (e.g., the index
+	column could also be the X data column for a Y channel file).
+
+	For X-Y UDS files a linear formula of the form x = a*i + b can be
+	used instead of X column data.
+
+	Scaling can be performed on X and Y column data.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	Use UDSTool or UDSMod to set UDS specification fields that ASC2UDS
+	does not set.

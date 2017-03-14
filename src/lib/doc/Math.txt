@@ -1,0 +1,20 @@
+NHTSA Tools Fortran Math Routines
+
+These are standard numerical routines used in NHTSA programs:
+
+BIAS.for
+BWFILT_S.for
+CLIP_S.for
+DIFFR_S.for
+FFT_S.for
+FIR100_S.for
+FIRF16.for
+HIC_S.for
+IIRFIL.for
+INTEG_S.for
+INTERP_S.for
+
+The source code for each routine documents its arguments.
+
+Some routines require additional scratch array arguments.
+This is to allow the routines to work with any data array dimensions.

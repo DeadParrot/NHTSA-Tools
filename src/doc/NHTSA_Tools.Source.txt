@@ -1,0 +1,21 @@
+		NHTSA Tools Source Code Documentation
+
+
+The NHTSA Tools software is based on a portable Fortran framework with a
+small set of platform-specific routines and header files.  The Tools
+library has been built to provide high functionality in the programs
+without great complexity.
+
+Currently Windows, OpenVMS, and a number of Unix platforms are supported.
+Most of the code is Fortran 77.  Fortran 77 compilers that support
+STRUCTURE, DO WHILE / END DO, and some other common extensions are
+required.  A few C routines are used where necessary on some platforms.
+The programs run in console mode for portability except for
+platform-specific graphics programs.
+
+The source code resides in directory trees with the cross-platform source
+and header files above platform subdirectories with platform-specific
+files.  The platform-specific sources and headers must be customized for
+each new platform-compiler combination.  Search paths for source and
+header files should be set to look first in the platform-specific source
+or include subdirectory, and then in the cross-platform directory.

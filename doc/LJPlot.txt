@@ -1,0 +1,56 @@
+PROGRAM: LJPlot				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	LJPlot plots overlays of UDS and ASCII files on HP LaserJet III and
+	above (PCL5) compatible printers in 300 or 600 dpi resolution.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Up to 20 overlayed curves can be put on each plot.  Plot symbols are
+	provided for overlay plots. When the input file contains the relevant
+	information, axis labels are created automatically. The user is
+	prompted for unknown labels.
+
+	Plots are done in 300 dpi resolution unless the "600" command line
+	switch is used (600 dpi must be supported by the printer).
+
+	Both the X and Y axes can be manually scaled and log transformed.
+
+SETUP/RUN INSTRUCTIONS:
+
+	UDS files with Y series or X-Y data are supported. UDS plot overlays
+	are automatically converted to the dimensional system of the first
+	curve, if necessary.  With UDS files, LJPlot displays summary
+	information for each curve below its file name.
+
+	ASCII files must have two columns of numbers, with the x-axis value
+	followed by the corresponding y-axis value on each line (separated by
+	spaces, tabs, and/or a comma). Non-numeric header records may precede
+	the columns of numbers.
+
+	In addition to the standard command line switches LJPlot accepts
+	the switches:
+
+	  LJPlot [NPER=<num_per>] [X=LOG] [Y=LOG]
+	         [600] [LINE=<thickness>] [NO_SYM] [MF] [PRN=<prn_dev>]
+
+	with the meanings:
+
+	         <num_per> :  Number of curves per plot [all (max 20)]
+	         X/Y=LOG :  Use logarithmic X/Y axis
+	         600 :  600 dpi resolution
+	         <thickness> :  Line thickness (0,1,2,...) [1]
+	         NO_SYM :  No plot symbols
+	         MF :  Manual feed
+	         <prn_dev> :  Printer device [LPT1]
+
+	LJPlot determines the type of file, UDS or ASCII, automatically
+	(different types can be combined on the same plot).  If the X or Y
+	units of overlayed files are inconsistent, LJPlot turns on the
+	unitless plot mode for the corresponding axis.  Unitless axes have no
+	units or values and all curves are expanded to full range.  Unitless
+	mode can also be turned on or off manually. Log transform modes can
+	also be set while running LJPlot and remain set for subsequent plots.

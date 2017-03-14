@@ -1,0 +1,151 @@
+ROUTINE: UDSIO				ROUTINE MODIFICATION DATE:  1997/10/01
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2002/06/12
+AUTHOR:  Stuart G. Mentzer
+
+ROUTINE FUNCTION AND METHODS:
+
+	UDSIO performs input and output of UDS files with options for
+	opening the UDS files, reading only the specification data, and
+	provides error messages and an integer status flag to the calling
+	routine.  UDSIO supports one Y format channel in each UDS file.
+	The newer STRUCTURE-based UDS_READ/UDS_WRITE routines are
+	recommended instead of UDSIO.
+
+ROUTINE FEATURES/OPTIONS:
+
+	Error messages, handling, and status flags are incorporated.
+	There is a read spec's only option.  Error and warning messages
+	can be suppressed by the calling program.
+
+	The named file is opened before the I/O is performed.  A blank
+	file name implies an open file, and UDSIO does a REWIND before
+	I/O.  When reading a file, the file is opened with read-only
+	access to allow reading any files for which the user has read
+	access privilege.
+
+	UDSIO supports a single Y format (y-axis series with evenly
+	DEL-spaced x-axis values) channel in each UDS file.  The first Y
+	channel found is read and a single Y channel is written.  Use
+	UDSIOX for X-Y files.
+
+	The array dimensions are fully checked for validity and are
+	truncated when necessary to fit within the specified calling
+	program bounds.
+
+USAGE INSTRUCTIONS:
+
+	The calling routine and other routines using the UDS fields should
+	have:
+
+		INCLUDE 'udsio.fi'
+
+	with the directory containing udsio.fi on the Fortran include file
+	search path.
+
+	The calling program must set the COMMON-based array bound
+	parameters, NFP_L and NLP_U, of the array sent to UDSIO.  A way to
+	do this and still be able to adjust the array bounds from a single
+	location is to use corresponding program parameters, as in:
+
+		INTEGER NFP__L, NLP__U
+		PARAMETER ( NFP__L = -1000, NLP__U = 10000 )
+		REAL Y(NFP__L:NLP__U)
+		DATA NFP_L / NFP__L /, NLP_U / NLP__U /
+
+	The double underscore values are the parameters and the
+	COMMON-based variables are initialized to them with a DATA
+	statement (these should not be changed in the program body).
+
+	The NUMFORM_R COMMON-based parameter can be used to convert the
+	floating point number format of UDS files during I/O.  If
+	NUMFORM_R is not set, numbers will be converted to the local
+	platform default format.  Floating point values stored in reserved
+	fields are not converted.  Conversion on UDS file writes do not
+	alter the number format of the UDS variables in the calling
+	routine.
+
+	The DIMSYS_R COMMON-based parameter can be used to convert the
+	dimensional system of UDS files during I/O.  No conversion is
+	performed by default.  Dimensioned values stored in real "dummy"
+	variables and reserved fields are not converted with DIMSYS_R.
+	Conversion on UDS file writes do not alter the dimensional system
+	of the UDS variables in the calling routine.
+
+	The call syntax is:
+
+		CALL UDSIO( ROW, SOF, FILNAM, LUN, Y, IOS )
+
+	The parameter usage is:
+
+		ROW - Read Or Write flag: 'R' => Read, 'W' => Write.
+
+		SOF - Specs or Full read flag: 'S' => read specs only
+
+		FILNAM - Name of UDS file (blank => file status is OPEN)
+
+		LUN - Logical unit number for UDS file I/O
+
+		Y - Measurement data array: Y(NFP_L:NLP_U)
+
+		IOS - Status and message suppression flag (integer):
+
+		  (input) -99 - Suppresses UDSIO messages
+
+		  (output)  0 - OK, no errors
+		           >0 - FORTRAN IOSTAT error flag
+		           -1 - FORTRAN IOSTAT error flag
+		           -2 - Spec data read error
+		           -3 - Illegal NFP or NLP array dimension
+		           -4 - Measurement data read error
+		           -5 - Illegal ROW flag value specified
+		           -6 - Write error
+
+	The COMMON-based parameter usage is:
+
+		NFP_L - Lower bound of X and Y array indices
+
+		NLP_U - Upper bound of X and Y array indices
+
+		NUMFORM_R - Floating point number format request flag:
+		            (by default converts to local platform format)
+		  VAX   => VAX format
+		  IEEE  => IEEE (PC) format
+		  SUN   => SUN format
+		  NONE  => No conversion applied
+
+		DIMSYS_R - Dimensional system request flag:
+		           (no default conversions are performed)
+		  MET   => Standard metric units
+		  ENG   => English units
+
+EXAMPLE:
+
+	CALL UDSIO( 'R', 'F', 'IN.UDS', 1, Y, IOS )
+
+	This reads the entire file IN.UDS on unit 1, loading the Y array
+	with the file measurement data.
+
+NOTES:
+
+	UDSIO is a shell that uses the UDSIOX routine for the actual I/O.
+	All of the UDSIOX-related routines and headers are needed to use
+	UDSIO.
+
+	To create UDS files from non-UDS source data the UDS fields should
+	be blank/zero-initialized before setting the relevant fields.  An
+	easy way to do this is to call UDSIO_INIT() from a module that
+	has INCLUDE 'udsio.fi'.
+	
+1997/06/10 Change:
+
+	UDSIO library specific routines UDSIO_BUF_READ, UDSIO_BUF_WRITE, and
+	UDSIO_CLOSE were implemented to avoid use of the corresponding UDS
+	library routines that were updated to use C routines for the low-level
+	i/o (to support UDS-1992 files with the OpenVMS STREAM_LF attribute).
+	The UDSIO library cannot use the C-based i/o because it was designed to
+	use a logical unit number specified by the calling code whereas the
+	C-based file open routine must select the file handle.  This means that
+	the UDSIO interfaces cannot support the STREAM_LF attribute files
+	(e.g., files served from Un*x to OpenVMS or "unzipped" on OpenVMS).
+	The only change required to applications using the UDSIO interface
+	is to use UDSIO_CLOSE() instead of UDS_CLOSE() to close the UDS files.

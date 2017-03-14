@@ -1,0 +1,125 @@
+PROGRAM: LisGen				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	LisGen is a program for creating lists of strings or file names
+	sharing common components or with numeric or alphabetic sequences.
+	This is particularly useful for generating lists of file names for
+	use as input to other programs.
+
+	LisGen analyses a user-supplied string template for global strings
+	that will appear in each of the generated strings, and string groups
+	for which each element is used in every possible combination with all
+	other group elements.  Each group elements can be a simple string or
+	an ASCII or integer sequence.
+
+	LisGen perform directory searches for each string on the list unless
+	directory searching is suppressed.
+
+USAGE INSTRUCTIONS:
+
+	To run LisGen the command line syntax is:
+
+	 LisGen [[T=]<template|hitlist>] [[NO_]BATCH] [NO_INCR] [REP]
+		[OUT[=<outlist>]] [DIR=<dir_out>] [?] [??]
+		[HIT=<hit_file>] [APPEND] [NO_DIR] [NO_PATH]
+
+	with the switch usage:
+
+	<template|hitlist> :  Input template or hitlist file name
+	BATCH/NO_BATCH :  Always/never apply batch processing
+	NO_INCR :  Don't increment names of existing output files
+	REP :  Generate a report file in lisgen.rep
+	OUT :  Generate an output list file in <outlist> [lisgen.out]
+	DIR=<dir_out> :  Output to directory <dir_out>
+	? :  Display command line syntax
+	?? :  Display this command line help
+	HIT=<hit_file> :  Hit file name [lisgen.hit]
+	APPEND :  Append to hitfile if it exists already
+	NO_DIR :  Don't perform directory search on list strings
+	NO_PATH :  Don't include full paths in list file names
+
+	A command line <template|hitlist> entry is processed before LisGen
+	prompts for additional templates.  An existing hitlist can be
+	specified on the command line and will be copied to the top of the
+	new list.  Only templates, not additional hitlists, can be entered
+	to LisGen prompts.
+
+	The program prompts for string templates in an interactive run.  A
+	valid string template is a concatenation of global and group strings.
+	A group is identified by enclosing parentheses, so a typical template
+	might be of the form:
+
+	  global(group)global(group)global
+
+	Global strings can contain any characters except "(" and appear in
+	each output string in their respective positions.
+
+	A group is a collection of elements separated by commas or
+	apostrophes, such as
+
+	  (element_1,element_2,element_3)
+
+	or
+
+	  (element_1'element_2'element_3)
+
+	Apostrophe separators can be used when sending a template to a
+	command procedure that would treat commas as argument separators,
+	such as a DOS batch file.
+
+	A group element can be a simple string or a sequence.  A simple
+	string is any string that is not in the form of an alphabetic or
+	numeric sequence.  Spaces around simple strings are preserved in
+	the corresponding output elements.
+
+	A sequence is of the form: <lo>-<hi> where <lo> and <hi> are either
+	alphabetic characters or nonnegative integers with <lo> <= <hi>.  If
+	<lo> is an integer with leading zeros (e.g., 005) then the output
+	element is padded to at least the length of <lo> with leading zeros.
+	Leading and trailing spaces around <lo> are also preserved in the
+	corresponding output element.
+
+	Each simple string and each value from a sequence are substituted in
+	the position of the group in every possible combination with each of
+	the values of the other groups.  For example, the template
+	(A,B).(1-3) generates the list A.1, A.2, A.3, B.1, B.2, B.3.
+
+	To generate the output strings the groups are normally cycled through
+	their elements in a "speedometer" sequence, with the rightmost group
+	cycling fastest.  This output string sequence can be altered by using
+	additional parentheses around groups to be cycled faster; the cycling
+	order is then right to left in order of decreasing number of
+	parentheses.  For example, to reverse the cycling order to left to
+	right with a three group string, use:
+
+	  global(((group)))global((group))global(group)global
+
+	If a simple group member with "-", ",", "'", or ")" characters is
+	desired, enclose the element in double quote symbols, e.g. "OCC-BAR".
+
+	An empty group element can be used, as in (A,B,,) or (A,,C).  Using a
+	group of multiple empty elements, such as (,,), anywhere in a
+	template causes repeated output strings to be generated.  Completely
+	empty groups, such as (), have no effect and are eliminated.
+
+	Unless the NO_DIR command line option is used, LisGen performs a
+	directory search on each string produced and places all matching
+	file names in the list.  If no period is included the extension ".*"
+	is assumed.  Wild card characters appropriate to the operating system
+	are allowed in the file name strings.  All files corresponding to a
+	string with wild cards are generated adjacently - use groups and
+	sequences in multiple parentheses instead of wild cards when the
+	order of the generated file name list is important.
+
+	LisGen continues to prompt for more templates until you tell it you
+	are finished.  The output file is an ASCII file with each string on
+	a separate line.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	LisGen allows up to 10 groups of up to 100 elements each in an input
+	string.  The input and output strings are limited to 255 characters
+	in length.

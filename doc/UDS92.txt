@@ -1,0 +1,24 @@
+PROGRAM: UDS92				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	UDS92 performs conversion of UDS files from UDS-1991 to UDS-1992
+	format.
+
+PROGRAM FEATURES/OPTIONS:
+
+	UDS92 can process a list of files in a "batch" mode by entering
+	template or hitlist arguments on the command line or to program
+	prompts.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	UDS92 assumes the input UDS-1991 files are in the local platform
+	floating point and integer byte order format.  (UDS-1991 files
+	did not include information indicating the number format.)
+	So, while UDS92 will work fine on PC and OpenVMS VAX platforms,
+	the current version cannot be built for the OpenVMS Alpha platform
+	where the files to be converted are in VAX format; perform the
+	conversion on a VAX machine instead.

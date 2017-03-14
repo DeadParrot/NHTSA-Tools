@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ -f $PlatformCompiler/GNUmakefile ]; then
+  if [ ! -d $PlatformFull ]; then
+    mkdir -p $PlatformFull
+  fi
+  cd $PlatformFull
+  if [[ -f /usr/bin/nproc ]]; then
+     ntask=$(/usr/bin/nproc)
+  else
+     ntask=2
+  fi
+  make -j${ntask} --makefile=../../GNUmakefile $*
+  cd ../../../..
+else
+  echo $PlatformCompiler/GNUmakefile not found
+fi

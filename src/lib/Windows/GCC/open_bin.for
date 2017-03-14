@@ -1,0 +1,67 @@
+      SUBROUTINE OPEN_BIN( LUN, FILE_NAME, ROW, IOS )
+
+!***********************************************************************
+!* Opens a Binary File
+!*
+!* Language: Fortran
+!*
+!* Platform: Windows/GCC
+!*
+!* Compiler: GFortran
+!*
+!* Author: Stuart G. Mentzer
+!*         Andrew Orndorff
+!*
+!* Date: 2017/02/08
+!***********************************************************************
+
+
+      ! Arguments ______________________________________________________
+
+      INTEGER LUN ! Logical i/o unit
+
+      CHARACTER*(*) FILE_NAME ! File name to open
+
+      CHARACTER ROW ! Read or Write flag
+
+      INTEGER IOS ! Status flag
+
+
+      ! Functions ______________________________________________________
+
+      INTEGER GET_LUN
+
+      CHARACTER UPCASE
+
+      EXTERNAL GET_LUN, UPCASE
+
+
+      ! Get a logical i/o unit
+      LUN = GET_LUN()
+      IF ( LUN .LE. 0 ) THEN ! No unit available
+        IOS = -3
+        RETURN
+      END IF
+
+      ! Open the file
+      IF ( UPCASE( ROW ) .EQ. 'R' ) THEN ! Read
+        OPEN( UNIT=LUN, FILE=FILE_NAME, STATUS='OLD',
+     &   ACCESS='STREAM', FORM='UNFORMATTED',
+     &   ACTION='READ',
+     &   IOSTAT=IOS )
+      ELSE IF ( UPCASE( ROW ) .EQ. 'W' ) THEN ! Write
+        OPEN( UNIT=LUN, FILE=FILE_NAME, STATUS='UNKNOWN',
+     &   ACCESS='STREAM', FORM='UNFORMATTED',
+     &   IOSTAT=IOS )
+      ELSE IF ( UPCASE( ROW ) .EQ. 'S' ) THEN ! Scratch
+        OPEN( UNIT=LUN, STATUS='SCRATCH',
+     &   ACCESS='STREAM', FORM='UNFORMATTED',
+     &   IOSTAT=IOS )
+      ELSE ! Read or write
+        OPEN( UNIT=LUN, FILE=FILE_NAME, STATUS='UNKNOWN',
+     &   ACCESS='STREAM', FORM='UNFORMATTED',
+     &   IOSTAT=IOS )
+      END IF
+
+      RETURN
+      END

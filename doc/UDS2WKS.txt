@@ -1,0 +1,17 @@
+PROGRAM: UDS2WKS			PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  S. Summers
+
+PROGRAM FUNCTION AND METHODS:
+
+	UDS2WKS converts UDS files to Lotus 123 WKS format files.
+	A graph of the file is also created in the worksheet.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Both Y and X-Y format data channel UDS files are supported.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	The template/hitlist-capable version currently only supports
+	one WKS output file for each separate UDS input file.

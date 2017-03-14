@@ -1,0 +1,95 @@
+!***********************************************************************
+!* UDS Library Function Declarations
+!*
+!* Language: Fortran
+!*
+!* Author: Stuart G. Mentzer
+!*
+!* Date: 2003/07/26
+!*
+!* Note:
+!* . Declare CHARACTER*(*) functions EXTERNAL with size where used
+!***********************************************************************
+
+      ! LOGICAL functions
+      LOGICAL ANY_CHARS
+      EXTERNAL ANY_CHARS
+      LOGICAL BLANK
+      EXTERNAL BLANK
+      LOGICAL DP_CHK
+      EXTERNAL DP_CHK
+      LOGICAL EQUAL_DP
+      EXTERNAL EQUAL_DP
+      LOGICAL EQUAL_SP
+      EXTERNAL EQUAL_SP
+      LOGICAL FN_EQUAL
+      EXTERNAL FN_EQUAL
+      LOGICAL FN_VALID
+      EXTERNAL FN_VALID
+      LOGICAL INT_CHK
+      EXTERNAL INT_CHK
+      LOGICAL REAL_CHK
+      EXTERNAL REAL_CHK
+
+      ! INTEGER functions
+      INTEGER FIRST_CHAR
+      EXTERNAL FIRST_CHAR
+      INTEGER FE_POSN
+      EXTERNAL FE_POSN
+      INTEGER FN_POSN
+      EXTERNAL FN_POSN
+      INTEGER FT_POSN
+      EXTERNAL FT_POSN
+      INTEGER FT_POSN_S
+      EXTERNAL FT_POSN_S
+      INTEGER FV_POSN
+      EXTERNAL FV_POSN
+      INTEGER GET_LUN
+      EXTERNAL GET_LUN
+      INTEGER INT_ASGN
+      EXTERNAL INT_ASGN
+      INTEGER LAST_INDEX
+      EXTERNAL LAST_INDEX
+      INTEGER L_TRIM
+      EXTERNAL L_TRIM
+      INTEGER LN_TRIM
+      EXTERNAL LN_TRIM
+      INTEGER MAKE_DIR
+      EXTERNAL MAKE_DIR
+      INTEGER REC_LEN
+      EXTERNAL REC_LEN
+      INTEGER TRY_DIR
+      EXTERNAL TRY_DIR
+
+      ! REAL functions
+      REAL REAL_ASGN
+      EXTERNAL REAL_ASGN
+
+      ! DOUBLE PRECISION functions
+      DOUBLE PRECISION DP_ASGN
+      EXTERNAL DP_ASGN
+      DOUBLE PRECISION DP_TRAN
+      EXTERNAL DP_TRAN
+
+      ! CHARACTER functions
+      ! Declare CHARACTER*(*) EXTERNAL with size where used
+      ! CHARACTER*(*) COMPRESS
+      ! EXTERNAL COMPRESS
+      ! CHARACTER*(*) DNCASE
+      ! EXTERNAL DNCASE
+      ! CHARACTER*(*) DS_UNITS
+      ! EXTERNAL DS_UNITS
+      ! CHARACTER*(*) DS_TYPE
+      ! EXTERNAL DS_TYPE
+      CHARACTER FN_TYPE
+      EXTERNAL FN_TYPE
+      ! CHARACTER*(*) LJUST
+      ! EXTERNAL LJUST
+      ! CHARACTER*(*) NULL_TERM
+      ! EXTERNAL NULL_TERM
+      ! CHARACTER*(*) NULL_TRIM
+      ! EXTERNAL NULL_TRIM
+      ! CHARACTER*(*) RJUST
+      ! EXTERNAL RJUST
+      ! CHARACTER*(*) UPCASE
+      ! EXTERNAL UPCASE

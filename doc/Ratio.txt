@@ -1,0 +1,33 @@
+PROGRAM: Ratio				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	Ratio computes the ratio of UDS y-series files.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Consistency checking is performed to warn the user if certain key
+	fields are not the same in the input files. Some of the fields must be
+	consistent or an error is generated. Other fields are blanked or set to
+	zero if an inconsistency is present.
+
+	The output array dimensions are the intersection of the input file
+	ranges.
+
+	The CURNAM is set to RAT. The default output file extension may be RAT
+	or R followed by characters indicating the sensor attachment, if
+	consistent.
+
+	When both signals have a zero value at the same index point the ratio
+	is set to one.  When only the denominator signal has a zero value the
+	ratio is set to zero.
+
+SETUP/RUN INSTRUCTIONS:
+
+	Existing UDS y-series files must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	None.

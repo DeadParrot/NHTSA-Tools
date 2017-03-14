@@ -1,0 +1,18 @@
+!***********************************************************************
+!* File STRUCTURE Header Wrapper
+!*
+!* Language: Fortran
+!*
+!* Platform: Windows
+!*
+!* Compiler: Intel Fortran
+!*
+!* Author: Stuart G. Mentzer
+!*         Andrew Orndorff
+!*
+!* Date: 2004/10/25
+!***********************************************************************
+
+!DEC$ OPTIONS /ALIGN=RECORDS=NATURAL
+      INCLUDE 'file1.fi'
+!DEC$ END OPTIONS

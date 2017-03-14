@@ -1,0 +1,13 @@
+!***********************************************************************
+!* Numeric Conversion Header Using INTEGER*1
+!* . Use BYTE version on platforms that don't support INTEGER*1
+!*
+!* Language: Fortran
+!*
+!* Author: Stuart G. Mentzer
+!*
+!* Date: 1999/08/20
+!***********************************************************************
+
+      ! Byte sized parameters
+      INTEGER*1 BB(4), BDUM

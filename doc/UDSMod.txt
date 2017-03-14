@@ -1,0 +1,41 @@
+PROGRAM: UDSMod				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	UDSMod modifies specifications of UDS files.  Single files and
+	batch modification of multiple files are supported.
+
+PROGRAM FEATURES/OPTIONS:
+
+	UDSMod can change the value of a specified UDS field on one or more
+	UDS files.  A list of field names can be displayed.  The field name
+	and value entered are checked by UDSMod for acceptability.
+
+	If the modification is not specified on the command line with the
+	FIELD=<field> parameter UDSMod will prompt for multiple modifications
+	for each file
+
+SETUP/RUN INSTRUCTIONS:
+
+	UDSMod prompts for the name of the UDS field to modify.  If a ? or
+	an unrecognized field is entered a list of allowable field names is
+	displayed and the prompt is repeated.
+
+	UDSMod then prompts for the new field value.  An unacceptable value
+	causes an error message, and the prompt is repeated.  Nonstandard
+	values cause a warning message.
+
+	Field values sent on the command line that contain spaces should be
+	enclosed in double quotes as in this example:
+
+		UDSMod FIELD=SENATT "VALUE=ENGINE - TOP"
+
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	UDSMod cannot modify UDS file measurement data.  The UDSTool program
+	can be used for interactive modifications of a single UDS file's
+	specifications or measurement data.  The UDSConv program can convert
+	UDS file types and dimensional systems.

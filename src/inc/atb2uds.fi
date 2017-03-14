@@ -1,0 +1,172 @@
+!***********************************************************************
+!* ATB2UDS Header
+!***********************************************************************
+
+
+
+!***********************************************************************
+!* Commons defining variables output by ATB to post-processing data file
+!***********************************************************************
+
+      common /ATB_control/  nseg, njnt, npl, nblt, nbag, nveh, ngrnd,
+     &                      npanel, nhrnss, nbltph, nsd, mnpl, mnblt,
+     &                      mnseg, mnbag, mpl, mblt, mseg, mbag,
+     &                      nptspb, msdm, msdn, nsg, msg, xsg
+!4.2    Added for ATB version 4.2 vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+     &                      , mcg, mcgin, kref
+
+      integer    nseg, njnt, npl, nblt, nbag, nveh, ngrnd, npanel(5),
+     &           nhrnss, nbltph(5), nsd, mnpl(30), mnblt(8),
+     &           mnseg(30), mnbag(6), mpl(3,5,30), mblt(3,5,8),
+     &           mseg(3,5,30), mbag(3,10,6), nptspb(20), msdm(20),
+!4.2    Variables redimensioned from 7 to 9 for ATB version 4.2 vvvvvvvv
+     &           msdn(20), nsg(9), msg(20,9)
+!4.2    Added for ATB version 4.2 vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+     &           , mcg, mcgin(24,5), kref(20,9)
+
+      real*8     xsg(3,20,3)
+
+!------------------------------------------------------------------------------
+!  nseg : no. of segments for the crash victim (max 30) - i6
+!  njnt : no. of joints (max 29) - i6
+!  npl : no. of planes describing contact panels  - i6
+!  nblt : no. of belts to restrain crash victim  - i6
+!  nbag : no. of airbags to restrain crash victim  - i6
+!  nveh : the segment no. associated with the vehicle (=nseg+1) - i6
+!  ngrnd : the segment no. associated with ground - i6
+!  npanel(i) : no. of vehicle contact panels that are allowed to interact
+!              with the ith airbag.
+!  nhrnss : no. of harness-belt systems (max 5) - i6
+!  nbltph(i) : no. of individual belts for ith harness (max sum of all
+!              belts is 20)  - i4
+!  nsd : no. of spring dampers -i6
+!  mnpl(i) : no. of segments allowed to contact the ith plane - i4
+!  mnblt(i) : no. of segments allowed to contact the ith belt
+!             (value of 0 or 1) - i4
+!  mnseg(i) : no. of segments allowed to contact the ith segment - i4
+!  mnbag(i) : no. of segments allowed to contact the ith airbag - i4
+!  mpl(i,j,k) : (1,j,k)  - the segment no. to which plane k is attached
+!               (2,j,k)  - the jth segment no. for which contact with
+!                          plane k is allowed
+!               (3,j,k)  - the no. of contact ellipsoid associated with
+!                          the mpl (2,j,k) segment
+!               j = 1, 5 as a maximum of five segment are allowed to
+!                        contact a given plane
+!  mblt(i,j,k) : (1,j,k)  - the segment no. to which belt k is attached
+!                (2,j,k)  - the jth segment no. for which interaction with
+!                           belt k is allowed
+!                (3,j,k)  - the no. of contact ellipsoid associated with
+!                           the mblt(2,j,k) segment
+!  mseg(i,j,k) : (1,j,k)  - the no. of contact ellipsiod associated with
+!                           with the kth segment
+!                (2,j,k)  - the jth segment no. for which contact with
+!                           segment k is allowed
+!                (3,j,k)  - the no. of contact ellipsoid associated with
+!                           the mseg(2,j,k) segment
+!  mbag(i,j,k) : (1,j,k)  - DOESN'T SEEM TO BE USED !!
+!                (2,j,k)  - the jth segment no. for which contact forces
+!                           with the kth airbag will be computed
+!                (3,j,k)  - the no. of contact ellipsoid associated with
+!                           the mbag(2,j,k) segment
+!  nptspb(i) : no. of reference points, including anchor points, for
+!              belt i in the different harnessess - i4
+!  msdm(i) and msdn (i) : the segment numbers to which ith spring is
+!                         attached  - i3
+!  nsg(i) : i = 1,2,3  no. of selected points on the various body segments
+!                      for which time histories are desired
+!                       i = 1  linear accelerations
+!                       i = 2  linear velocities
+!                       i = 3  linear displacements
+!           i = 4,5,6  no. of selected segments for which angular time
+!                      histories are desired
+!                       i = 4 angular accelerations
+!                       i = 5 angular velocities
+!                       i = 6 angular displacements
+!           i = 7      no. of selected joints for which time histories
+!                      are desired
+!
+!  msg(i,j) :  j = 1,2,3  segment no. of ith point for which linear
+!                         time histories are desired
+!              j = 4,5,6  segment no. of ith segment for which
+!                         angular time histories are desired
+!              j = 7      joint no. of ith joint for which time
+!                         histories are desired
+!4.2    Added for ATB version 4.2 vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+!  mcg : no. of bodies for body property time-history output - i6
+!  mcgin(i,j) : body char. for body property time-history output - i3
+!  kref(i,j) : reference segment number for time histories - i3
+!   j=1 - point total acceleration
+!   j=2 - point rel. velocity
+!   j=3 - point rel. linear displacement
+!   j=4 - segment angular acceleration
+!   j=5 - segment rel. angular velocity
+!   j=6 - segment rel. angular displacement
+!   j=7 - joint parameters
+!   j=8 - segment wind force
+!   j=9 - joint forces & torques in kref(9) geometric coordinate system
+!4.2    Added for ATB version 4.2 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+!  xsg(i,j,k) : the X, Y and Z co-ordinates of the jth point for
+!               k = 1, 2 or 3 (linear time histories)
+!------------------------------------------------------------------------------
+
+      common /ATB_titles/ date, coment, vpsttl, bdyttl, bltttl, plttl,
+     &                    bagttl, seg, joint, unitl, unitm, unitt
+
+      real    date(3), coment(40), vpsttl(20), bdyttl(5), bltttl(5,8),
+     &        plttl(5,30), bagttl(5,6), seg(30), joint(30)
+
+      real*8  unitl, unitm, unitt
+
+!------------------------------------------------------------------------------
+!  date : date entered in ATB run  - 3a4
+!  coment : ATB run description - 40a4
+!  vpsttl : crash vehicle deceleration description  - 20a4
+!  bdyttl : crash victim description - 5a4
+!  bltttl(5,i) : ith belt description  - 5a4
+!  plttl(5,i) : ith plane description - 5a4
+!  bagttl(5,i) : ith airbag description - 5a4
+!  seg(i) : ith segment abbreviated name - a4
+!  joint(i) : ith joint abbreviated name - a4
+!  unitl : unit of length  - a4
+!  unitm : unit of force - a4
+!  unitt : unit of time - a4
+!------------------------------------------------------------------------------
+
+
+
+!***********************************************************************
+! Common defining variables needed by ATB2UDS to convert ATB output file
+!***********************************************************************
+
+      common /ATB_data/     npts, nt, index_nt, delta_t, atb_file
+
+!4.2    13 changed to 16 for ATB version 4.2 vvvvvvvvvvvvvvvvvvvvvvvvvvv
+      integer    npts, nt, index_nt(16)
+        real       delta_t
+      character  atb_file*50
+
+!------------------------------------------------------------------------------
+!  npts : number of available data points (at DELTA_T msec intervals)
+!  nt : end value of second index in the DATA array (which is used in
+!       the WRITE routines and is read from the ATB output file)
+!
+!  index_nt (i): start value of second index, in the above mentioned
+!                DATA array, for the following histories :-
+!
+!                 i= 1     linear accelerations
+!                 i= 2     linear velocities
+!                 i= 3     linear displacements
+!                 i= 4     angular accelerations
+!                 i= 5     angular velocities
+!                 i= 6     angular displacements
+!                 i= 7     joint parameters
+!                 i= 8     plane forces
+!                 i= 9     belt forces
+!                 i= 10    harness-belt endpoint forces
+!                 i= 11    spring damper forces
+!                 i= 12    segment contact forces
+!                 i= 13    airbag forces
+!
+!  delta_t : smallest time interval (in msec) at which data is available
+!  atb_file : name of ATB output file
+!------------------------------------------------------------------------------

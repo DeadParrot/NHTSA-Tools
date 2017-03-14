@@ -1,0 +1,42 @@
+PROGRAM: VC				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  C. Gabler
+
+PROGRAM FUNCTION AND METHODS:
+
+	VC computes the Viscous Criterion for side impacted occupants.  VC is
+	an injury criterion proposed by General Motors for evaluating thoracic
+	impact trauma.
+
+	The VC program should be ONLY used for side impacted occupants.
+	This program is inappropriate for frontally impacted occupants.
+
+	The VC program first computes the filtered chest compression Cf(t) by
+	filtering the raw chest compression using a four pole phaseless
+	Butterworth filter with a cutoff frequency of 100 Hz.  The velocity
+	Vf(t) is computed by taking the derivative of the filtered compression,
+	and filtering it using a four pole phaseless Butterworth filter with a
+	cutoff frequency of 100 Hz.
+
+	VC(t) is computed by multiplying the velocity Vf(t) by the filtered
+	chest compression Cf(t), and dividing by 174.5 mm (half standard chest
+	width).  The units of VC(t) are meters/sec.
+
+	The VC value reported by this program is the maximum of VC(t) over the
+	time interval of the input compression signal.
+
+PROGRAM FEATURES/OPTIONS:
+
+	The VC program outputs a summary of results to the screen and
+	optionally (using the REP command line argument) to the report file
+	vc.rep.
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing chest compression time series file in UDS format must be
+	supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	The VC program should ONLY be used for side impacted occupants.
+	This program is inappropriate for frontally impacted occupants.

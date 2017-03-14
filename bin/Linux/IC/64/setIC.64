@@ -1,0 +1,6 @@
+#!/bin/bash
+# Intel Compiler 64-Bit Setup
+
+# Put a custom version first in your PATH to adapt to your system
+
+source /opt/intel/Compiler/11.1/069/bin/ifortvars.sh intel64

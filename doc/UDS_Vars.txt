@@ -1,0 +1,406 @@
+			UDS-1992 File Field Definitions
+			-------------------------------
+
+
+File Information:
+-----------------
+
+VARIABLE        DEFINITION
+-----------	----------------------------------------------------------------
+
+FILEVER		UDS File Version				(char*12)
+			UDS-1992 for current UDS files.
+
+NCHAN		Number of Channels				(int)
+			Number of data channels in the UDS file.
+
+FILEFORM	File Format					(char*10)
+			Format of the file's data channels.  Y for y-axis data
+			with uniform step of DEL, X-Y for series of (x,y)
+			coordinate pairs, or MIXED for a combination of
+			different channel formats.
+
+NUMFORM		Number Format					(char*5)
+			VAX or IEEE or SUN.
+
+DIMSYS		Dimensional System				(char*3)
+			MET for Metric, SI for SI, or ENG for English units.
+			(Units.txt lists the dimensional system units.)
+
+
+
+Test Information:
+-----------------
+
+VARIABLE        DEFINITION
+-----------	----------------------------------------------------------------
+
+TSTSRC		Test Data Source				(char*15)
+			VEHICLE DB, BIOMECHANICS DB, CALIBRATION DB, or
+			general data source description such as SIMULATION.
+
+TSTNO		Test Number					(int)
+			Test number in integer format.
+
+TSTNAM		Test Name					(char*12)
+			Test number in character format or descriptive test
+			name (numbers are right-justified).
+
+TITLE		Test Title					(char*70)
+			Descriptive test title.
+
+TSTPRF		Test Performer					(char*25)
+			Test performer name or other data origin description.
+
+TSTREF		Test Reference Number				(char*10)
+			Test reference number assigned by the test performer or
+			other data identification code.
+
+TSTCFN		Test Configuration Code				(char*3)
+			Test configuration code such as VTB, VTV, or SLD.
+
+IMPANG		Impact Angle					(int)
+			Impact angle of vehicles.
+
+CLSSPD		Closing Speed					(real)
+			Closing speed of vehicle(s) in test.
+
+
+
+Component/Vehicle Information:
+-----------------------------
+
+VARIABLE        DEFINITION
+-----------	----------------------------------------------------------------
+
+CMPNO		Component/Vehicle Number			(int)
+VEHNO			Component or vehicle number assigned to the object
+			containing the sensor: 1 is the VTB subject vehicle or
+			the ITV/VTI impactor or the VTV bullet, 2 is the
+			ITV/VTI/VTV subject (target) vehicle (1 and 2 are
+			arbitrary when both vehicles in a VTV are subjects of
+			the test), 3 is the accessory vehicle if present (such
+			as a cart), and 0 is the fixed barrier.
+
+CMPTYP		Component Type Code				(char*2)
+			Two character component type code: VE for vehicles,
+			OC for occupants, ID for deformable impactors, and IR
+			for rigid impactors.
+
+CMPDSC		Component/Vehicle Description			(char*30)
+VEHDSC			Component or vehicle description.
+CMPNTD
+
+MAKE		Make of Vehicle / Barrier Rigidity		(char*15)
+			Make of vehicle containing the sensor, such as
+			CHEVROLET, or barrier rigidity, such as RIGID or
+			DEFORMABLE, if sensor is on a fixed barrier.
+
+MODEL		Model of Vehicle / Barrier Shape		(char*25)
+			Model of vehicle containing the sensor, such as
+			CITATION, or barrier shape, such as LOAD CELL BARRIER,
+			if sensor is on a fixed barrier.
+
+YEAR		Year of Vehicle					(int)
+			Model year of vehicle containing the sensor, such as
+			1997.
+
+BODY		Body Type of Vehicle				(char*25)
+			Body type of vehicle containing the sensor, such as
+			FOUR DOOR SEDAN.
+
+ENGINE		Engine Type Code of Vehicle			(char*4)
+			Engine type code of vehicle containing the sensor, such
+			as 4CTF.
+
+CMPWGT		Component/Vehicle Test Weight			(real)
+VEHTWT			Test weight of component or vehicle containing the
+			sensor.
+
+CMPSPD		Component/Vehicle Speed				(real)
+VEHSPD			Speed of the component or vehicle containing the sensor.
+
+
+
+Occupant Information:
+--------------------
+
+VARIABLE        DEFINITION
+-----------	----------------------------------------------------------------
+
+OCCTYP		Occupant Type Code				(char*6)
+			Occupant type code of the occupant containing the
+			sensor, such as APROD.
+
+OCCAGE		Occupant Age (years)				(int)
+			Age of the occupant possessing the sensor.
+
+OCCSEX		Occupant Sex Code				(char*1)
+			Occupant sex code of the occupant possessing the
+			sensor, such as M or F, or blank if sensor not on an
+			occupant.
+
+OCCWT		Occupant Weight					(real)
+			Weight of the occupant possessing the sensor.
+
+DUMSIZ		Dummy Size Code					(char*2)
+			Dummy size code of the occupant possessing the sensor,
+			such as 50 (for 50 percentile) or 3C (for 3 year old
+			child).
+
+RESTR1		Primary Restraint System			(char*20)
+			Primary restraint system of the occupant possessing the
+			sensor, such as 3 POINT BELT.
+
+RESTR2		Secondary Restraint System			(char*20)
+			Secondary restraint system of the occupant possessing
+			the sensor, such as KNEE RESTRAINT.
+
+
+
+Injury Information:
+------------------
+
+VARIABLE        DEFINITION
+-----------	----------------------------------------------------------------
+
+HIC		Head Injury Criterion				(real)
+			HIC value of the occupant possessing the
+			resultant HEAD CG sensor.
+
+T1		HIC Start Time (msec)				(real)
+			Start time of the HIC pulse interval.
+
+T2		HIC Stop Time (msec)				(real)
+			Stop time of the HIC pulse interval.
+
+HICDTUP		HIC Time Span Upper Limit (msec)		(real)
+			Upper Limit of T2-T1 used in computing the HIC, such as
+			36, or zero if no upper limit was used.
+
+CLIP3M		Max 3 msec Clip of Chest Resultant (G's)	(real)
+			Maximum 3 msec Clip value of the occupant containing
+			the chest resultant acceleration filtered to 300 Hz.
+
+CSI		Chest Severity Index				(real)
+			CSI value of the occupant containing the chest resultant
+			acceleration filtered to 300 Hz.
+
+AIS		Abbreviated Injury Scale Code			(char*1)
+			AIS code, such as 4, of the occupant containing the
+			sensor.
+
+
+
+Component/Vehicle-2 Information:
+-------------------------------
+
+Fields correspond to the other component than the one the sensor is attached
+to in a component test with two components.  The field definitions match those
+for the corresponding Component/Vehicle fields.
+
+VARIABLE        DEFINITION
+-----------	----------------------------------------------------------------
+
+CMPNO2		Component/Vehicle Number			(int)
+VEHNO2
+
+CMPTYP2		Component Type Code				(char*2)
+
+CMPDSC2		Component/Vehicle Description			(char*30)
+VEHDSC2
+CMPNTD2
+
+MAKE2		Make of Vehicle / Barrier Rigidity		(char*15)
+
+MODEL2		Model of Vehicle / Barrier Shape		(char*25)
+
+YEAR2		Year of Vehicle					(int)
+
+BODY2		Body Type of Vehicle				(char*25)
+
+ENGINE2		Engine Type Code of Vehicle			(char*4)
+
+CMPWGT2		Component/Vehicle Test Weight			(real)
+VEHTWT2
+
+CMPSPD2		Component/Vehicle Speed				(real)
+VEHSPD2
+
+
+
+Occupant-2 Information:
+----------------------
+
+Fields correspond to the other occupant than the one the sensor is attached
+to in a component test with two occupants.  The field definitions match those
+for the corresponding Occupant fields.
+
+VARIABLE        DEFINITION
+-----------	----------------------------------------------------------------
+
+OCCTYP2		Occupant Type Code				(char*6)
+
+OCCAGE2		Occupant Age (years)				(int)
+
+OCCSEX2		Occupant Sex Code				(char*1)
+
+OCCWT2		Occupant Weight					(real)
+
+DUMSIZ2		Dummy Size Code					(char*2)
+
+RESTR12		Primary Restraint System			(char*20)
+
+RESTR22		Secondary Restraint System			(char*20)
+
+
+
+Curve Information:
+-----------------
+
+VARIABLE        DEFINITION
+-----------	----------------------------------------------------------------
+
+ICHAN		Channel Index.					(int)
+			Channel sequence index within the file.
+
+CHANFORM	Channel Format					(char*10)
+			Format of the data channel.  Y for y-axis data
+			with uniform step of DEL or X-Y for series of (x,y)
+			coordinate pairs.
+
+CURNO		Curve Number					(int)
+			Curve number in integer format.
+
+CURNAM		Curve Name					(char*12)
+			Curve number in character format or descriptive curve
+			name (numbers are right-justified).
+
+SENATT		Sensor Attachment				(char*30)
+			Sensor attachment description, such as HEAD CG.
+
+SENLOC		Occupant Sensor Location Code			(char*2)
+			Occupant location code for the occupant containing the
+			sensor.
+
+SENNUM		Sensor Type Number				(int)
+			Sensor type number for static force deflection data:
+			1 for displacements and 2 for load cell data.
+
+BANDNO		Chest Band Number				(int)
+
+GAGNO		Chest Gauge Number				(int)
+
+AXIS		Axis Code for Data				(char*2)
+			Axis code, such as XG (for X-Global), YL (for Y-Local),
+			or RS (for Resultant).
+
+YTYP		Y-Axis Data Type				(char*20)
+DATTYP			Y-axis data type, such as ACCELERATION.
+
+YUNITS		Y-Axis Data Units				(char*20)
+UNITS			Y-axis data units, such as G'S.
+
+XTYP		X-Axis Data Type				(char*20)
+			X-axis data type, such as TIME or DEFLECTION.
+
+XUNITS		X-Axis Data Units				(char*20)
+			X-axis data units, such as SECONDS or METERS.
+
+STATUS		Status of Measurement Data			(char*20)
+			Status of data, such as AS MEASURED or MODIFIED.
+
+CURTYP		Curve Type					(char*20)
+FORM			Type of curve data, such as TIME SERIES, DFT, or
+			FORCE-DEFLECTION.
+
+CURDSC		Curve Description				(char*70)
+DESC			Description of curve data.
+
+NFP		Index Number of First Data Point		(int)
+			Index of the first data point of the curve.  Index 0
+			corresponds to zero on the x-axis for y-series data
+			or zero of the quantity measured by DEL for X-Y data.
+			NFP can be 1 for X-Y data with no applicable DEL
+			increment between coordinate pairs.
+
+NLP		Index Number of Last Data Point			(int)
+			Index of the last data point of the curve.
+
+DEL		Increment of Data Points			(real)
+			X-axis increment between values in y-series data or
+			increment between X-Y data coordinate pairs, if any.
+			(Time is in units of SECONDS.)
+
+INIVEL		Initial Velocity along Data Axis		(real)
+			Initial velocity of the sensor along the measured axis.
+
+PREF		Prefilter Cutoff Frequency (Hz)			(real)
+			Prefilter cutoff frequency of data in its original (as
+			delivered) state.
+
+FCUT		Filter Cutoff Frequency (Hz)			(real)
+			Current cutoff frequency of the last (post-delivery)
+			filter applied to the data (note type of filter in
+			CURDSC if not SAE J211).
+
+FCOR		Filter Corner Frequency (Hz)			(real)
+			Current corner frequency of the last (post-delivery)
+			filter applied to the data (the frequency below which
+			the filter response is essentially equal to one).
+
+FSTP		Filter Stop Frequency (Hz)			(real)
+			Current stop frequency of the last (post-delivery)
+			filter applied to the data (the frequency above which
+			the filter response is essentially equal to zero).
+
+SCLFAC		Scaling Factor					(real)
+			Set to 1.0 for unscaled measurement data.  Otherwise it
+			reflects the value by which measurement data has been
+			adjusted.
+
+ID1-ID5		Integer Dummy Variables				(int)
+			Five integers for special purpose information
+
+RD1-RD5		Real Dummy Variables				(real)
+			Five reals for special purpose information.
+
+CD1		Character Dummy Variable 1			(char*20)
+			Character string for special purpose information.
+
+CD2		Character Dummy Variable 2			(char*70)
+			Character string for special purpose information
+			(initially filled with the MODDSC data base field).
+
+
+
+Reserved Space:
+--------------
+
+VARIABLE        DEFINITION
+-----------	----------------------------------------------------------------
+
+HDR_RESV	Header Record Reserved Space			(char*132)
+			Currently unused space in the UDS file header record
+			that is reserved for future use but may be used by
+			applications for special purposed information.
+
+CMP2_RESV	Component/Vehicle-2 Record Reserved Space	(char*326)
+			Currently unused space in the UDS file
+			component/vehicle-2 record that is reserved for future
+			use but may be used by applications for special
+			purposed information.
+
+CURV_RESV	Component/Vehicle-2 Record Reserved Space	(char*68)
+			Currently unused space in the UDS file curve spec
+			record that is reserved for future use but may be used
+			by applications for special purposed information.
+
+
+
+--------------------------------------------------------------------------------
+
+UDS File Notes:
+
+. Fields that are not applicable to the file should be blank if character
+  and zero if numeric.

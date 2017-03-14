@@ -1,0 +1,35 @@
+PROGRAM: Trunc				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	Trunc performs user-requested truncation or extension and subsampling
+	of UDS files.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Either or both data tails can be truncated or extended (with zeros)
+	and subsampling can be performed.
+
+	A report file named trunc.rep is generated if the REP command line
+	argument is used.
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS time series file must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	The data array index is limited by the bounds of the Trunc array
+	program.
+
+	Trunc does not perform domain shifting of the pulse (the alignment is
+	not changed, the tail lengths are just adjusted).  Use UDSTool or other
+	programs to perform domain shifting.
+
+	Subsampling of data is not recommended, in general.  Unless the
+	sampling frequency is at least twice the stop frequency of the filter
+	(the Nyquist frequency) information will be lost.  It is better to
+	filter to an appropriate frequency before increasing the time increment
+	in the pulse.

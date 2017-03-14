@@ -1,0 +1,32 @@
+VeCor Input File
+ID Code___ Run Title____________________________________________________________
+Pulse Information
+    J  +/-       TSL        RS        RB        RT         S         B         T
+    j  +/-       tsl        rs        rb        rt         s         b         t
+Pulse j file name
+.		.
+.		.
+.		.
+Error Information
+ Type    | Spec's  |         |         |         |
+   AC    j        tl        tu         a        ra
+DS AC    j        tl        tu         a        ra
+DE AC    j        tl        tu         a        ra
+   VC    j        tl        tu         v        rv
+   DC    j        tl        tu         d        rd
+   DR j1j2        tl        tu         d        rd
+   VS   v#        tl        tu                  rv
+   MO             tl        tu                  rv
+   TR   j1   j2   j3   j4   j5   j6   j7   j8   j9  j10  j11  j12  j13  j14  j15
+Solution Information
+  NGA
+Output Information
+   NO Output file name
+
+
+
+Columns:
+
+|        |         |         |         |         |         |         |         |
+1        1         2         3         4         5         6         7         8
+         0         0         0         0         0         0         0         0

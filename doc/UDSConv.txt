@@ -1,0 +1,21 @@
+PROGRAM: UDSConv			PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	UDSConv performs conversion of UDS files from UDS-1992 to ASCII
+	format, conversion of UDS file floating point numbers between VAX,
+	IEEE, and Sun formats, conversion between Metric, SI, and English
+	dimensional systems, and conversion between degree and radian based
+	angular units.
+
+PROGRAM FEATURES/OPTIONS:
+
+	A profile of the desired conversions is set up on entry into UDSConv.
+	The profile also includes options for the naming of output files.  The
+	profile applies to all files converted until a new profile is set up.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	None.

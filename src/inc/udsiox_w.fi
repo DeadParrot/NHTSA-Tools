@@ -1,0 +1,149 @@
+!***********************************************************************
+!* UDS File Fortran Header for UDSIOX Interface - Write Variables
+!*
+!* Language: Fortran
+!*
+!* Author: Stuart G. Mentzer
+!*
+!* Date: 1999/09/24
+!***********************************************************************
+
+
+      ! Header Record ________________________________________________
+
+
+      ! File Information
+      CHARACTER*12 FILEVER_W
+      CHARACTER*10 FILEFORM_W
+      CHARACTER*5 NUMFORM_W
+      CHARACTER*3 DIMSYS_W
+      INTEGER NCHAN_W
+
+
+      ! Test Information
+      CHARACTER*15 TSTSRC_W
+      CHARACTER*12 TSTNAM_W
+      CHARACTER*70 TITLE_W
+      CHARACTER*25 TSTPRF_W
+      CHARACTER*10 TSTREF_W
+      CHARACTER*3 TSTCFN_W
+      INTEGER TSTNO_W
+      INTEGER IMPANG_W
+      REAL CLSSPD_W
+
+
+      ! Component/Vehicle Information
+      CHARACTER*2 CMPTYP_W
+      CHARACTER*30 CMPDSC_W
+      CHARACTER*15 MAKE_W
+      CHARACTER*25 MODEL_W
+      CHARACTER*25 BODY_W
+      CHARACTER*4 ENGINE_W
+      INTEGER CMPNO_W
+      INTEGER YEAR_W
+      REAL CMPWGT_W
+      REAL CMPSPD_W
+
+
+      ! Occupant Information
+      CHARACTER*6 OCCTYP_W
+      CHARACTER*1 OCCSEX_W
+      CHARACTER*2 DUMSIZ_W
+      CHARACTER*20 RESTR1_W
+      CHARACTER*20 RESTR2_W
+      INTEGER OCCAGE_W
+      REAL OCCWT_W
+
+
+      ! Injury Information
+      CHARACTER*1 AIS_W
+      REAL HIC_W
+      REAL T1_W
+      REAL T2_W
+      REAL HICDTUP_W
+      REAL CLIP3M_W
+      REAL CSI_W
+
+
+      ! Reserved
+      CHARACTER*132 HDR_RESV_W
+
+
+      ! Component-2 Record ___________________________________________
+
+
+      ! Component/Vehicle-2 Information
+      CHARACTER*2 CMPTYP2_W
+      CHARACTER*30 CMPDSC2_W
+      CHARACTER*15 MAKE2_W
+      CHARACTER*25 MODEL2_W
+      CHARACTER*25 BODY2_W
+      CHARACTER*4 ENGINE2_W
+      INTEGER CMPNO2_W
+      INTEGER YEAR2_W
+      REAL CMPWGT2_W
+      REAL CMPSPD2_W
+
+
+      ! Occupant-2 Information
+      CHARACTER*6 OCCTYP2_W
+      CHARACTER*1 OCCSEX2_W
+      CHARACTER*2 DUMSIZ2_W
+      CHARACTER*20 RESTR12_W
+      CHARACTER*20 RESTR22_W
+      INTEGER OCCAGE2_W
+      REAL OCCWT2_W
+
+      ! Reserved
+      CHARACTER*326 CMP2_RESV_W
+
+
+      ! Curve Header Record __________________________________________
+
+
+      ! Curve Information
+      CHARACTER*10 CHANFORM_W
+      CHARACTER*12 CURNAM_W
+      CHARACTER*30 SENATT_W
+      CHARACTER*2 SENLOC_W
+      CHARACTER*2 AXIS_W
+      CHARACTER*20 YTYP_W
+      CHARACTER*20 YUNITS_W
+      CHARACTER*20 XTYP_W
+      CHARACTER*20 XUNITS_W
+      CHARACTER*20 STATUS_W
+      CHARACTER*20 CURTYP_W
+      CHARACTER*70 CURDSC_W
+      INTEGER ICHAN_W
+      INTEGER CURNO_W
+      INTEGER SENNUM_W
+      INTEGER BANDNO_W
+      INTEGER GAGNO_W
+      INTEGER NFP_W
+      INTEGER NLP_W
+      REAL DEL_W
+      REAL INIVEL_W
+      REAL PREF_W
+      REAL FCUT_W
+      REAL FCOR_W
+      REAL FSTP_W
+      REAL SCLFAC_W
+
+
+      ! Supplementary Information
+      CHARACTER*20 CD1_W
+      CHARACTER*70 CD2_W
+      INTEGER ID1_W
+      INTEGER ID2_W
+      INTEGER ID3_W
+      INTEGER ID4_W
+      INTEGER ID5_W
+      REAL RD1_W
+      REAL RD2_W
+      REAL RD3_W
+      REAL RD4_W
+      REAL RD5_W
+
+
+      ! Reserved
+      CHARACTER*68 CURV_RESV_W

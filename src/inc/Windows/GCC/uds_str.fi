@@ -1,0 +1,15 @@
+!***********************************************************************
+!* UDS-1992 File Fortran STRUCTURE Header Wrapper
+!*
+!* Language: Fortran
+!*
+!* Platform: Linux
+!*
+!* Compiler: GFortran
+!*
+!* Author: Stuart G. Mentzer
+!*
+!* Date: 2017/02/07
+!***********************************************************************
+
+      INCLUDE 'uds_str1.fi'

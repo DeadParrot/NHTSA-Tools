@@ -1,0 +1,15 @@
+#!/bin/bash
+# NHTSA Linux Intel Setup
+
+if [ -z "$NHTSA" ]; then
+  export NHTSA=$(dirname $(dirname $(dirname $(dirname $(readlink -m "${BASH_SOURCE[0]}")))))
+fi
+
+export PlatformOS=Linux
+export PlatformCompiler=Linux/IC
+
+export PATH=$PATH:$NHTSA/bin/$PlatformCompiler
+
+export FPATH=.:$NHTSA/src/Fortran:$NHTSA/src/Fortran/inc:$FPATH
+
+source $NHTSA/bin/Linux/setProject

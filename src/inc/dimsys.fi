@@ -1,0 +1,11 @@
+!***********************************************************************
+!* UDS Dimensional System Parameter Header Wrapper
+!*
+!* Language: Fortran
+!*
+!* Author: Stuart G. Mentzer
+!*
+!* Date: 1999/08/20
+!***********************************************************************
+
+      INCLUDE 'dimsys1.fi'

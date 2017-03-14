@@ -1,0 +1,33 @@
+PROGRAM: Result				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	Result computes the resultant of orthogonal axis UDS y-series files.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Resultants can be computed from one, two, or three distinct axis files.
+	The AXIS field of the output file is set to RS if different axes are
+	used.  The CURNAM is set to RES followed by letter indicating the axes
+	used.
+
+	Consistency checking is performed to warn the user if certain key
+	fields are not the same in the input files. Some of the fields must be
+	consistent or an error is generated. Other fields are blanked or set
+	to zero if an inconsistency is present.
+
+	The output array dimensions are the intersection of the input file
+	ranges.
+
+	A report file named result.rep is generated if the REP command line
+	argument is used.
+
+SETUP/RUN INSTRUCTIONS:
+
+	Existing UDS files must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	None.

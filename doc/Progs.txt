@@ -1,0 +1,61 @@
+		The NHTSA Tools Programs
+
+
+Display:
+
+  UDSDump	UDS file display to screen or file
+
+
+Computations:
+
+  BWFilt	Butterworth filter
+  Clip		3 msec Clip
+  Diffr		Differentiation
+  FFT		Fast Fourier transform
+  FIR100	Finite-impulse response filter
+  HIC		Head Injury Criterion
+  HIC15		15 msec Head Injury Criterion
+  HIC36		36 msec Head Injury Criterion
+  IIR		Infinite-impulse response filter
+  Integ		Integration
+  MaxDiff	Max Difference
+  RMSDiff	Root Mean Square Difference
+  VC	 	Viscous Criterion
+
+
+Combinations:
+
+  Average	Averages UDS Y-series
+  Multiply	Multiplies UDS Y-series
+  Ratio		Divides UDS Y-series
+  Result	Resultant of UDS Y-series
+  Subtract	Subtracts UDS Y-series
+  Sum		Sums UDS Y-series
+
+
+Conversions:
+
+  ASC2UDS	ASCII to UDS
+  ATB2UDS	ATB to UDS
+  MADY2UDS	MADYMO to UDS
+  UDS2WKS	UDS to Lotus 123 WKS
+  UDS2XY	UDS Y-series to X-Y
+  UDS2Y		UDS X-Y to Y-series
+  UDS92		UDS-1991 to UDS-1992
+  UDSConv	UDS file type (to ASCII), number format, and units
+
+
+Modifications:
+
+  Align		Aligns by peak, RMS, or integral
+  RmBias	Removes signal bias
+  Scale		Scales x or y axis data by a constant
+  Shifts	Shifts x or y axis data by a constant
+  Trunc		Truncates/extends and subsamples/interpolates
+  UDSMod	Modifies UDS specifications
+  UDSTool	Modifies UDS specifications and data (interactive)
+
+
+Utility:
+
+  LisGen	Generates lists of file names or strings

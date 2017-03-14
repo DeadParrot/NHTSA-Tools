@@ -1,0 +1,24 @@
+PROGRAM: FFT				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Jeff Marcus
+
+PROGRAM FUNCTION AND METHODS:
+
+	FFT computes the Discrete Fourier Transform of UDS y-series files.
+	The magnitude and phase can be output to UDS files.
+
+PROGRAM FEATURES/OPTIONS:
+
+	FFT pads the data out to a power of two length, usually beyond the
+	next power of two above the signal length to give a finer frequency
+	sampling rate.
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS file must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	For signals near the limit of the array size the normal zero-padding
+	length may be limited, but will be at least up to the next power of
+	two beyond the signal length.

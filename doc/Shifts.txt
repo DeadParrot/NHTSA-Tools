@@ -1,0 +1,20 @@
+PROGRAM: Shifts				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	Shifts performs shifting of UDS file X or Y axis data by
+	user-specified amounts.  This includes time-shifting time series
+	signals (x-axis shift) and bias changes.  For x-axis shifts of
+	y-series channels the data is shifted by the closest index, and the
+	array tail indices can be optionally adjusted to match.  For other
+	shifts the array data values are changed by the specified amounts.
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS file must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	None.

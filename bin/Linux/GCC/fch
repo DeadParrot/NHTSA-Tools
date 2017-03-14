@@ -1,0 +1,19 @@
+#!/bin/bash
+# GFortran Compile Syntax Header
+
+if   [ -f $1     ]; then FortranHeader=$1
+elif [ -f $1.fh  ]; then FortranHeader=$1.fh
+elif [ -f $1.fi  ]; then FortranHeader=$1.fi
+fi
+
+[ "$FortranHeader" ] && shift
+
+if [ -f $FortranHeader.for ]; then
+  echo ERROR: Temp file $FortranHeader.for exists
+  exit
+fi
+
+echo INCLUDE \'$FortranHeader\' > $FortranHeader.for
+echo END >> $FortranHeader.for
+fcs $FortranHeader.for -fimplicit-none $2 $3 $4 $5 $6 $7 $8 $9
+rm -f $FortranHeader.for

@@ -1,0 +1,701 @@
+!***********************************************************************
+!* UDS-1992 File Fortran STRUCTURE Header
+!*
+!* Language: Fortran
+!*
+!* Author: Stuart G. Mentzer
+!*
+!* Date: 1999/08/20
+!***********************************************************************
+
+      ! Headers
+      INCLUDE 'uds_size.fi'
+
+
+      ! UDS STRUCTURE Declaration ______________________________________
+
+      STRUCTURE /UDS/
+
+        ! Header record ________________________________________________
+
+        ! File
+        CHARACTER FILEVER*12
+        INTEGER NCHAN
+        CHARACTER FILEFORM*10
+        CHARACTER NUMFORM*5
+        CHARACTER DIMSYS*3
+
+        ! Test
+        CHARACTER TSTSRC*15
+        INTEGER TSTNO
+        CHARACTER TSTNAM*12
+        CHARACTER TITLE*70
+        CHARACTER TSTPRF*25
+        CHARACTER TSTREF*10
+        CHARACTER TSTCFN*3
+        INTEGER IMPANG
+        REAL CLSSPD
+
+        ! Component/Vehicle
+        UNION
+          MAP
+            INTEGER CMPNO
+          END MAP
+          MAP
+            INTEGER VEHNO
+          END MAP
+        END UNION
+        CHARACTER CMPTYP*2
+        UNION
+          MAP
+            CHARACTER CMPDSC*30
+          END MAP
+          MAP
+            CHARACTER VEHDSC*30
+          END MAP
+        END UNION
+        CHARACTER MAKE*15
+        CHARACTER MODEL*25
+        INTEGER YEAR
+        CHARACTER BODY*25
+        CHARACTER ENGINE*4
+        UNION
+          MAP
+            REAL CMPWGT
+          END MAP
+          MAP
+            REAL VEHTWT
+          END MAP
+        END UNION
+        UNION
+          MAP
+            REAL CMPSPD
+          END MAP
+          MAP
+            REAL VEHSPD
+          END MAP
+        END UNION
+
+        ! Occupant
+        CHARACTER OCCTYP*6
+        INTEGER OCCAGE
+        CHARACTER OCCSEX*1
+        REAL OCCWT
+        CHARACTER DUMSIZ*2
+        CHARACTER RESTR1*20
+        CHARACTER RESTR2*20
+
+        ! Injury
+        REAL HIC
+        REAL T1
+        REAL T2
+        REAL HICDTUP
+        REAL CLIP3M
+        REAL CSI
+        CHARACTER AIS*1
+
+        ! Reserved
+        CHARACTER HDR_RESV*132
+
+
+        ! Component-2 record ___________________________________________
+
+        UNION
+          MAP
+            INTEGER CMPNO2
+          END MAP
+          MAP
+            INTEGER VEHNO2
+          END MAP
+        END UNION
+        CHARACTER CMPTYP2*2
+        UNION
+          MAP
+            CHARACTER CMPDSC2*30
+          END MAP
+          MAP
+            CHARACTER VEHDSC2*30
+          END MAP
+        END UNION
+        CHARACTER MAKE2*15
+        CHARACTER MODEL2*25
+        INTEGER YEAR2
+        CHARACTER BODY2*25
+        CHARACTER ENGINE2*4
+        UNION
+          MAP
+            REAL CMPWGT2
+          END MAP
+          MAP
+            REAL VEHTWT2
+          END MAP
+        END UNION
+        UNION
+          MAP
+            REAL CMPSPD2
+          END MAP
+          MAP
+            REAL VEHSPD2
+          END MAP
+        END UNION
+        CHARACTER OCCTYP2*6
+        INTEGER OCCAGE2
+        CHARACTER OCCSEX2*1
+        REAL OCCWT2
+        CHARACTER DUMSIZ2*2
+        CHARACTER RESTR12*20
+        CHARACTER RESTR22*20
+
+        ! Reserved
+        CHARACTER CMP2_RESV*326
+
+
+        ! Curve header record __________________________________________
+
+        INTEGER ICHAN
+        CHARACTER CHANFORM*10
+        INTEGER CURNO
+        CHARACTER CURNAM*12
+        CHARACTER SENATT*30
+        CHARACTER SENLOC*2
+        INTEGER SENNUM
+        INTEGER BANDNO
+        INTEGER GAGNO
+        CHARACTER AXIS*2
+        UNION
+          MAP
+            CHARACTER YTYP*20
+          END MAP
+          MAP
+            CHARACTER DATTYP*20
+          END MAP
+        END UNION
+        UNION
+          MAP
+            CHARACTER YUNITS*20
+          END MAP
+          MAP
+            CHARACTER UNITS*20
+          END MAP
+        END UNION
+        CHARACTER XTYP*20
+        CHARACTER XUNITS*20
+        CHARACTER STATUS*20
+        UNION
+          MAP
+            CHARACTER CURTYP*20
+          END MAP
+          MAP
+            CHARACTER FORM*20
+          END MAP
+        END UNION
+        UNION
+          MAP
+            CHARACTER CURDSC*70
+          END MAP
+          MAP
+            CHARACTER DESC*70
+          END MAP
+        END UNION
+        INTEGER NFP
+        INTEGER NLP
+        REAL DEL
+        REAL INIVEL
+        REAL PREF
+        REAL FCUT
+        REAL FCOR
+        REAL FSTP
+        REAL SCLFAC
+        INTEGER ID1
+        INTEGER ID2
+        INTEGER ID3
+        INTEGER ID4
+        INTEGER ID5
+        REAL RD1
+        REAL RD2
+        REAL RD3
+        REAL RD4
+        REAL RD5
+        CHARACTER CD1*20
+        CHARACTER CD2*70
+
+        ! Reserved
+        CHARACTER CURV_RESV*68
+
+
+        ! Curve data ___________________________________________________
+
+        UNION ! Y data
+          MAP
+            REAL Y(NFP_L:NLP_U)
+          END MAP
+          MAP
+            INTEGER Y_INT(NFP_L:NLP_U)
+          END MAP
+        END UNION
+
+        UNION ! X data
+          MAP
+            REAL X(NFP_L:NLP_U)
+          END MAP
+          MAP
+            INTEGER X_INT(NFP_L:NLP_U)
+          END MAP
+        END UNION
+
+      END STRUCTURE
+
+
+      ! UDS_Y STRUCTURE Declaration ____________________________________
+
+      STRUCTURE /UDS_Y/
+
+        ! Header record ________________________________________________
+
+        ! File
+        CHARACTER FILEVER*12
+        INTEGER NCHAN
+        CHARACTER FILEFORM*10
+        CHARACTER NUMFORM*5
+        CHARACTER DIMSYS*3
+
+        ! Test
+        CHARACTER TSTSRC*15
+        INTEGER TSTNO
+        CHARACTER TSTNAM*12
+        CHARACTER TITLE*70
+        CHARACTER TSTPRF*25
+        CHARACTER TSTREF*10
+        CHARACTER TSTCFN*3
+        INTEGER IMPANG
+        REAL CLSSPD
+
+        ! Component/Vehicle
+        UNION
+          MAP
+            INTEGER CMPNO
+          END MAP
+          MAP
+            INTEGER VEHNO
+          END MAP
+        END UNION
+        CHARACTER CMPTYP*2
+        UNION
+          MAP
+            CHARACTER CMPDSC*30
+          END MAP
+          MAP
+            CHARACTER VEHDSC*30
+          END MAP
+        END UNION
+        CHARACTER MAKE*15
+        CHARACTER MODEL*25
+        INTEGER YEAR
+        CHARACTER BODY*25
+        CHARACTER ENGINE*4
+        UNION
+          MAP
+            REAL CMPWGT
+          END MAP
+          MAP
+            REAL VEHTWT
+          END MAP
+        END UNION
+        UNION
+          MAP
+            REAL CMPSPD
+          END MAP
+          MAP
+            REAL VEHSPD
+          END MAP
+        END UNION
+
+        ! Occupant
+        CHARACTER OCCTYP*6
+        INTEGER OCCAGE
+        CHARACTER OCCSEX*1
+        REAL OCCWT
+        CHARACTER DUMSIZ*2
+        CHARACTER RESTR1*20
+        CHARACTER RESTR2*20
+
+        ! Injury
+        REAL HIC
+        REAL T1
+        REAL T2
+        REAL HICDTUP
+        REAL CLIP3M
+        REAL CSI
+        CHARACTER AIS*1
+
+        ! Reserved
+        CHARACTER HDR_RESV*132
+
+
+        ! Component-2 record ___________________________________________
+
+        UNION
+          MAP
+            INTEGER CMPNO2
+          END MAP
+          MAP
+            INTEGER VEHNO2
+          END MAP
+        END UNION
+        CHARACTER CMPTYP2*2
+        UNION
+          MAP
+            CHARACTER CMPDSC2*30
+          END MAP
+          MAP
+            CHARACTER VEHDSC2*30
+          END MAP
+        END UNION
+        CHARACTER MAKE2*15
+        CHARACTER MODEL2*25
+        INTEGER YEAR2
+        CHARACTER BODY2*25
+        CHARACTER ENGINE2*4
+        UNION
+          MAP
+            REAL CMPWGT2
+          END MAP
+          MAP
+            REAL VEHTWT2
+          END MAP
+        END UNION
+        UNION
+          MAP
+            REAL CMPSPD2
+          END MAP
+          MAP
+            REAL VEHSPD2
+          END MAP
+        END UNION
+        CHARACTER OCCTYP2*6
+        INTEGER OCCAGE2
+        CHARACTER OCCSEX2*1
+        REAL OCCWT2
+        CHARACTER DUMSIZ2*2
+        CHARACTER RESTR12*20
+        CHARACTER RESTR22*20
+
+        ! Reserved
+        CHARACTER CMP2_RESV*326
+
+
+        ! Curve header record __________________________________________
+
+        INTEGER ICHAN
+        CHARACTER CHANFORM*10
+        INTEGER CURNO
+        CHARACTER CURNAM*12
+        CHARACTER SENATT*30
+        CHARACTER SENLOC*2
+        INTEGER SENNUM
+        INTEGER BANDNO
+        INTEGER GAGNO
+        CHARACTER AXIS*2
+        UNION
+          MAP
+            CHARACTER YTYP*20
+          END MAP
+          MAP
+            CHARACTER DATTYP*20
+          END MAP
+        END UNION
+        UNION
+          MAP
+            CHARACTER YUNITS*20
+          END MAP
+          MAP
+            CHARACTER UNITS*20
+          END MAP
+        END UNION
+        CHARACTER XTYP*20
+        CHARACTER XUNITS*20
+        CHARACTER STATUS*20
+        UNION
+          MAP
+            CHARACTER CURTYP*20
+          END MAP
+          MAP
+            CHARACTER FORM*20
+          END MAP
+        END UNION
+        UNION
+          MAP
+            CHARACTER CURDSC*70
+          END MAP
+          MAP
+            CHARACTER DESC*70
+          END MAP
+        END UNION
+        INTEGER NFP
+        INTEGER NLP
+        REAL DEL
+        REAL INIVEL
+        REAL PREF
+        REAL FCUT
+        REAL FCOR
+        REAL FSTP
+        REAL SCLFAC
+        INTEGER ID1
+        INTEGER ID2
+        INTEGER ID3
+        INTEGER ID4
+        INTEGER ID5
+        REAL RD1
+        REAL RD2
+        REAL RD3
+        REAL RD4
+        REAL RD5
+        CHARACTER CD1*20
+        CHARACTER CD2*70
+
+        ! Reserved
+        CHARACTER CURV_RESV*68
+
+
+        ! Curve data ___________________________________________________
+
+        UNION ! Y data
+          MAP
+            REAL Y(NFP_L:NLP_U)
+          END MAP
+          MAP
+            INTEGER Y_INT(NFP_L:NLP_U)
+          END MAP
+        END UNION
+
+      END STRUCTURE
+
+
+      ! UDS Specification STRUCTURE Declaration ________________________
+
+      STRUCTURE /UDS_SPEC/
+
+        ! Header record ________________________________________________
+
+        ! File
+        CHARACTER FILEVER*12
+        INTEGER NCHAN
+        CHARACTER FILEFORM*10
+        CHARACTER NUMFORM*5
+        CHARACTER DIMSYS*3
+
+        ! Test
+        CHARACTER TSTSRC*15
+        INTEGER TSTNO
+        CHARACTER TSTNAM*12
+        CHARACTER TITLE*70
+        CHARACTER TSTPRF*25
+        CHARACTER TSTREF*10
+        CHARACTER TSTCFN*3
+        INTEGER IMPANG
+        REAL CLSSPD
+
+        ! Component/Vehicle
+        UNION
+          MAP
+            INTEGER CMPNO
+          END MAP
+          MAP
+            INTEGER VEHNO
+          END MAP
+        END UNION
+        CHARACTER CMPTYP*2
+        UNION
+          MAP
+            CHARACTER CMPDSC*30
+          END MAP
+          MAP
+            CHARACTER VEHDSC*30
+          END MAP
+        END UNION
+        CHARACTER MAKE*15
+        CHARACTER MODEL*25
+        INTEGER YEAR
+        CHARACTER BODY*25
+        CHARACTER ENGINE*4
+        UNION
+          MAP
+            REAL CMPWGT
+          END MAP
+          MAP
+            REAL VEHTWT
+          END MAP
+        END UNION
+        UNION
+          MAP
+            REAL CMPSPD
+          END MAP
+          MAP
+            REAL VEHSPD
+          END MAP
+        END UNION
+
+        ! Occupant
+        CHARACTER OCCTYP*6
+        INTEGER OCCAGE
+        CHARACTER OCCSEX*1
+        REAL OCCWT
+        CHARACTER DUMSIZ*2
+        CHARACTER RESTR1*20
+        CHARACTER RESTR2*20
+
+        ! Injury
+        REAL HIC
+        REAL T1
+        REAL T2
+        REAL HICDTUP
+        REAL CLIP3M
+        REAL CSI
+        CHARACTER AIS*1
+
+        ! Reserved
+        CHARACTER HDR_RESV*132
+
+
+        ! Component-2 record ___________________________________________
+
+        UNION
+          MAP
+            INTEGER CMPNO2
+          END MAP
+          MAP
+            INTEGER VEHNO2
+          END MAP
+        END UNION
+        CHARACTER CMPTYP2*2
+        UNION
+          MAP
+            CHARACTER CMPDSC2*30
+          END MAP
+          MAP
+            CHARACTER VEHDSC2*30
+          END MAP
+        END UNION
+        CHARACTER MAKE2*15
+        CHARACTER MODEL2*25
+        INTEGER YEAR2
+        CHARACTER BODY2*25
+        CHARACTER ENGINE2*4
+        UNION
+          MAP
+            REAL CMPWGT2
+          END MAP
+          MAP
+            REAL VEHTWT2
+          END MAP
+        END UNION
+        UNION
+          MAP
+            REAL CMPSPD2
+          END MAP
+          MAP
+            REAL VEHSPD2
+          END MAP
+        END UNION
+        CHARACTER OCCTYP2*6
+        INTEGER OCCAGE2
+        CHARACTER OCCSEX2*1
+        REAL OCCWT2
+        CHARACTER DUMSIZ2*2
+        CHARACTER RESTR12*20
+        CHARACTER RESTR22*20
+
+        ! Reserved
+        CHARACTER CMP2_RESV*326
+
+
+        ! Curve header record __________________________________________
+
+        INTEGER ICHAN
+        CHARACTER CHANFORM*10
+        INTEGER CURNO
+        CHARACTER CURNAM*12
+        CHARACTER SENATT*30
+        CHARACTER SENLOC*2
+        INTEGER SENNUM
+        INTEGER BANDNO
+        INTEGER GAGNO
+        CHARACTER AXIS*2
+        UNION
+          MAP
+            CHARACTER YTYP*20
+          END MAP
+          MAP
+            CHARACTER DATTYP*20
+          END MAP
+        END UNION
+        UNION
+          MAP
+            CHARACTER YUNITS*20
+          END MAP
+          MAP
+            CHARACTER UNITS*20
+          END MAP
+        END UNION
+        CHARACTER XTYP*20
+        CHARACTER XUNITS*20
+        CHARACTER STATUS*20
+        UNION
+          MAP
+            CHARACTER CURTYP*20
+          END MAP
+          MAP
+            CHARACTER FORM*20
+          END MAP
+        END UNION
+        UNION
+          MAP
+            CHARACTER CURDSC*70
+          END MAP
+          MAP
+            CHARACTER DESC*70
+          END MAP
+        END UNION
+        INTEGER NFP
+        INTEGER NLP
+        REAL DEL
+        REAL INIVEL
+        REAL PREF
+        REAL FCUT
+        REAL FCOR
+        REAL FSTP
+        REAL SCLFAC
+        INTEGER ID1
+        INTEGER ID2
+        INTEGER ID3
+        INTEGER ID4
+        INTEGER ID5
+        REAL RD1
+        REAL RD2
+        REAL RD3
+        REAL RD4
+        REAL RD5
+        CHARACTER CD1*20
+        CHARACTER CD2*70
+
+        ! Reserved
+        CHARACTER CURV_RESV*68
+
+      END STRUCTURE
+
+
+      ! UDS I/O Control STRUCTURE Declaration __________________________
+
+      STRUCTURE /UDS_CONTROL/
+
+        CHARACTER FILEVER*12
+        CHARACTER FILEFORM*10
+        CHARACTER NUMFORM*5
+        CHARACTER DIMSYS*3
+        CHARACTER CHANFORM*10
+        LOGICAL NO_MSG
+        LOGICAL SPECS_ONLY
+        LOGICAL FILL_X
+        LOGICAL FN_INCR
+
+      END STRUCTURE

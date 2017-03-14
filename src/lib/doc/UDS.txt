@@ -1,0 +1,30 @@
+NHTSA UDS Library
+
+The UDS library is a collection of routines to support the i/o and processing
+of NHTSA UDS-1992 format data files.  It contains both UDS-specific and
+common general-purpose routines used by NHTSA applications.
+
+The top-level UDS library directory contains the routines considered fully
+portable across platforms.  Subdirectories for each supported platform
+contain platform-specific routines, makefiles, and header files.  Header
+files are located in INC subdirectories of the tree.  Compiler and make
+path searching should be used to first search the platform-specific
+directory and then the shared code directory to get the appropriate source
+file.
+
+The portable code and most of the platform-specific code is written in
+Fortran 77 (using some common extensions such as DO-ENDDO and STRUCTURE).
+C routines are used where necessary to facilitate low-level i/o
+operations.  The usage documentation for each routine is contained in its
+source code header comment.  Support for additional platforms can be added
+by following this framework.  NHTSA welcomes contributions of additional
+platform support files.
+
+The common UDS_STR.FI header file has STRUCTURE declarations that are not
+naturally aligned.  The FILE.FI header is naturally aligned to 4-byte
+boundaries.  On platforms supporting it, the best approach is to
+make a platform-specific header files that include the common headers inside
+wrapper directives to ensure the desired alignment.  Otherwise it is possible
+for user code to be compiled with different alignment than the Tools library
+causing run-time errors.  If such directives are not supported then the
+proper alignment compile settings should be prominently documented.

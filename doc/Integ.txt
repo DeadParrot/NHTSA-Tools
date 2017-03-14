@@ -1,0 +1,38 @@
+PROGRAM: Integ				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	Integ performs integration of UDS time series and X-Y files.
+
+	Trapezoid rule integration is used to provide reliable results for
+	both raw (noisy) and filtered data.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Any of the relevant integrals for a pulse can be computed without
+	first computing intermediate integrals.  The FIRST, SECOND, or
+	BOTH command line arguments can be optionally used to specify the
+	desired outputs without answering program prompts.
+
+	Initial values for integrals can be controlled by using the INI_VAL
+	command line argument to Integ.  A default initial value of zero is
+	used for all integrations except from acceleration to velocity,
+	which uses the UDS INIVEL field value.
+
+	Metric, SI, and English dimensional units files are supported.
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS file must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	Integ performs numerical integration of individual signals,
+	which is not valid for obtaining three-dimensional angular position
+	from angular velocity or acceleration signals.  There are a
+	number of angular position representations (Euler angles,
+	Bryant/Cardan angles, screw axis, quaternion), each of which
+	has a distinct integration algorithm that uses angular velocity
+	signals from all three axes.

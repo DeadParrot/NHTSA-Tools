@@ -1,0 +1,47 @@
+PROGRAM: IIR				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Edward J. Smith
+
+PROGRAM FUNCTION AND METHODS:
+
+	IIR is a programmable, n-th order, Butterworth, low-pass, recursive,
+	infinite impulse response, bidirectional digital filter.  IIR determines
+	which filters (1-,2-,3-, or 4-pole) to call in order to produce the
+	desired n-pole filter.  IIR was adapted from the VRTC program IIRFIL
+	developed by B. Stevens.
+
+PROGRAM FEATURES/OPTIONS:
+
+	IIR will prompt you for 3 values: frequency cutoff (Hz), attenuation (dB)
+	at stop band frequency, and stop band frequency (Hz).  From these it will
+	compute the number of poles according to this formula:
+	
+		# of poles = -FATT/(20.*LOG10(FSTP/FCUT)) + 0.5
+	
+		FATT - Frequency attenuation
+		FSTP - Stop frequency
+		FCUT - Cutoff frequency
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS time series file must be supplied to the program.  All
+	entered values must be real (fractions are truncated), and the frequency
+	attenuation must be negative.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	IIR has been observed to move the initial signal tail by large amounts in
+	some cases.
+
+	BWFilt has a 25 percent higher cutoff frequency than IIR, therefore, if
+	you want to duplicate the response of the BWFilt filter you must raise
+	IIR's cutoff freq. by 25 percent.
+
+	The following is a table that will let you duplicate the filtering process
+	of BWFilt for these SAE classes:
+
+		CLASS      FCUT     FATT     FSTP
+		60        125      -40      395
+		100        225      -40      712
+		180        375      -40     1186
+		600       1250      -40     3953

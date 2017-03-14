@@ -1,0 +1,42 @@
+PROGRAM: RmBias				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Andrew Orndorff & Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	RmBias performs bias removal on a signal using a user-specified
+	percentage of the signal to determine the size of the bias. Once
+	the portion of the signal to be used is specified RmBias uses an
+	averaging algorithm to determine the average magnitude of the
+	function over the interval. This average value is assumed to be the
+	bias, and the signal is then corrected by subtracting this bias
+	from each point on the signal.
+
+PROGRAM FEATURES/OPTIONS:
+
+	RmBias provides the option of determining the bias from either the
+	start or end tails of the signal, as specified by the user.  Once the
+	user specifies which method to use, RmBias prompts for what percentage
+	of the signal to use in determining the bias.
+
+	RmBias can process either Y or X-Y channel format data.  In both cases
+	the bias is computed by averaging the y-axis data points over the
+	specified span.
+
+SETUP/RUN INSTRUCTIONS:
+
+	Existing UDS files must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	As with any other signal correction algorithm that allows user control
+	of the method, a reasonable sense of how much of the signal is useable
+	for bias determination is required. Although using the entire signal is
+	acceptable, this may not always produce the best results. Also, using
+	too small a portion of the signal may also generate improper results,
+	especially if the signal has not been filtered before bias
+	determiniation - excess noise may lead to an inaccurate bias value.
+
+	The use of tail averaging assures that the approximate first integral
+	is zero over the bias-corrected tail for y-series channel data.  This
+	does not hold for X-Y channel data.

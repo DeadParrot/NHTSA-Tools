@@ -1,0 +1,109 @@
+NHTSA UDS File Units
+
+Notes:
+. The SI units are not currently supported in test data base files
+  but are supported in the accompanying NHTSA Tools software.
+. DEGREES or RADIANS based angular units are supported.
+. The UDS file units and data type fields are 20 characters long.
+
+
+Metric
++--------------------+--------------------+
+|Units               |Data Type           |
++--------------------+--------------------+
+|DEGREES CELSIUS     |TEMPERATURE         |
+|DECIBELS            |NOISE               |
+|DEGREES             |ANGULAR DISPLACEMENT|
+|DEGREES/SEC**2      |ANGULAR ACCELERATION|
+|DEGREES/SEC         |ANGULAR VELOCITY    |
+|G'S                 |ACCELERATION        |
+|JOULES              |ENERGY              |
+|KILOGRAMS           |MASS                |
+|KILOPASCALS AB      |ABSOLUTE PRESSURE   |
+|KILOPASCALS GA      |GAUGE PRESSURE      |
+|KILOMETERS/HOUR     |VELOCITY            |
+|MILLIMETERS         |DISPLACEMENT        |
+|MILLIMETERS**2      |AREA                |
+|MILLIMETERS**4      |                    |
+|MICROMET/MET        |STRAIN              |
+|NONE                |DIMENSIONLESS       |
+|NEWTON-SECONDS      |IMPULSE             |
+|NEWTON-METERS       |TORQUE              |
+|NEWTON-METER-SECONDS|ANGULAR IMPULSE     |
+|NEWTONS             |FORCE               |
+|OTHER               |OTHER               |
+|RADIANS             |ANGULAR DISPLACEMENT|
+|RADIANS/SEC**2      |ANGULAR ACCELERATION|
+|RADIANS/SEC         |ANGULAR VELOCITY    |
+|RECIPROCAL MM       |CURVATURE           |
+|SECONDS             |TIME                |
+|VOLTS               |VOLTAGE             |
++--------------------+--------------------+
+
+
+SI
++--------------------+--------------------+
+|Units               |Data Type           |
++--------------------+--------------------+
+|DEGREES CELSIUS     |TEMPERATURE         |
+|DECIBELS            |NOISE               |
+|DEGREES             |ANGULAR DISPLACEMENT|
+|DEGREES/SEC**2      |ANGULAR ACCELERATION|
+|DEGREES/SEC         |ANGULAR VELOCITY    |
+|METERS/SEC**2       |ACCELERATION        |
+|JOULES              |ENERGY              |
+|KILOGRAMS           |MASS                |
+|PASCALS AB          |ABSOLUTE PRESSURE   |
+|PASCALS GA          |GAUGE PRESSURE      |
+|METERS/SEC          |VELOCITY            |
+|METERS              |DISPLACEMENT        |
+|METERS**2           |AREA                |
+|METERS**4           |                    |
+|MICROMET/MET        |STRAIN              |
+|NONE                |DIMENSIONLESS       |
+|NEWTON-SECONDS      |IMPULSE             |
+|NEWTON-METERS       |TORQUE              |
+|NEWTON-METER-SECONDS|ANGULAR IMPULSE     |
+|NEWTONS             |FORCE               |
+|OTHER               |OTHER               |
+|RADIANS             |ANGULAR DISPLACEMENT|
+|RADIANS/SEC**2      |ANGULAR ACCELERATION|
+|RADIANS/SEC         |ANGULAR VELOCITY    |
+|RECIPROCAL MET      |CURVATURE           |
+|SECONDS             |TIME                |
+|VOLTS               |VOLTAGE             |
++--------------------+--------------------+
+
+
+English
++--------------------+--------------------+
+|Units               |Data Type           |
++--------------------+--------------------+
+|DEGREES FARENHEIT   |TEMPERATURE         |
+|DECIBELS            |NOISE               |
+|DEGREES             |ANGULAR DISPLACEMENT|
+|DEGREES/SEC**2      |ANGULAR ACCELERATION|
+|DEGREES/SEC         |ANGULAR VELOCITY    |
+|FOOT-POUNDS         |ENERGY              |
+|G'S                 |ACCELERATION        |
+|INCHES              |DISPLACEMENT        |
+|INCHES**2           |AREA                |
+|INCHES**4           |                    |
+|POUND-FEET          |TORQUE              |
+|POUNDS MASS         |MASS                |
+|POUNDS              |FORCE               |
+|POUND-FOOT-SECONDS  |ANGULAR IMPULSE     |
+|MILES/HOUR          |VELOCITY            |
+|MICROIN/IN          |STRAIN              |
+|NONE                |DIMENSIONLESS       |
+|OTHER               |OTHER               |
+|POUNDS/IN**2 AB     |ABSOLUTE PRESSURE   |
+|POUNDS/IN**2 GA     |GAUGE PRESSURE      |
+|POUND-SECONDS       |IMPULSE             |
+|RADIANS             |ANGULAR DISPLACEMENT|
+|RADIANS/SEC**2      |ANGULAR ACCELERATION|
+|RECIPROCAL INS      |CURVATURE           |
+|RADIANS/SEC         |ANGULAR VELOCITY    |
+|SECONDS             |TIME                |
+|VOLTS               |VOLTAGE             |
++--------------------+--------------------+

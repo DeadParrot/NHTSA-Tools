@@ -1,0 +1,17 @@
+#!/bin/bash
+# GFortran Compile Debug
+
+if [ -f $1 ]; then
+  FortranFile=$1
+elif [ -f $1.for ]; then
+  FortranFile=$1.for
+elif [ -f $1.f90 ]; then
+  FortranFile=$1.f90
+elif [ -f $1.f ]; then
+  FortranFile=$1.f
+else
+  echo No Fortran source file matching name $1 found
+  exit
+fi
+
+gfortran -pipe -Wall -Wno-character-truncation -m64 -mtune=generic -fno-sign-zero -fno-automatic -ffree-line-length-0 -ffloat-store -fcheck=bounds -fbacktrace -ftrapv -finit-integer=-999999 -finit-real=nan -finit-character=33 -O0 -ggdb -Iinc -c -x f95-cpp-input $FortranFile $2 $3 $4 $5 $6 $7 $8 $9

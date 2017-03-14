@@ -1,0 +1,106 @@
+ROUTINE: UDS_READ			ROUTINE MODIFICATION DATE:  1997/10/01
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 1997/10/01
+AUTHOR:  Stuart G. Mentzer
+
+ROUTINE FUNCTION AND METHODS:
+	UDS_READ reads UDS files, with options for floating point and
+	dimensional system conversion and error/warning message suppression,
+	and returns an integer status flag to the calling routine.  The UDS
+	file data is returned in a STRUCTURE object.
+
+ROUTINE FEATURES/OPTIONS:
+	Error messages, handling, and status flags are incorporated.
+	Error and warning messages can be suppressed by the calling program.
+
+	The UDS file is opened with read-only access to allow reading any files
+	for which the user has read access privilege.
+
+	UDS_READ supports one Y or X-Y format curve channel per file.
+
+	The array dimensions are fully checked for validity during the read and
+	are truncated when necessary to fit within the UDS STRUCTURE declared
+	bounds.  Different capacity programs can be built by compiling UDS_READ
+	and a program with a custom version of the UDS_SIZE.FI header file.
+
+USAGE INSTRUCTIONS:
+	The calling routine and other routines using the UDS fields should have:
+
+	   INCLUDE 'uds_str.fi'
+
+	The calling program must declare a UDS object in which to load the
+	file data and a UDS_CONTROL object of I/O parameters, as in:
+
+	   RECORD /UDS/ UDS
+	   RECORD /UDS_CONTROL/ UDS_C
+
+	The call syntax is:
+
+	   CALL UDS_READ( FILNAM, UDS, UDS_C, IOS )
+
+	The parameter usage is:
+
+	   FILNAM - Name of UDS file
+
+	   UDS - UDS STRUCTURE object
+
+	   UDS_C - UDS control STRUCTURE:
+		FILEVER    - Read filter
+		FILEFORM   - Read filter
+		NUMFORM    - Floating point number format conversion flag:
+	                     (converts to local platform format by default)
+		   'VAX'    => VAX format
+		   'IEEE'   => IEEE format
+		   'SUN'    => SUN format
+		   'NONE'   => No conversion applied
+		DIMSYS     - Dimensional system conversion flag:
+	                     (no default conversions are performed)
+		   'MET'    => metric units
+		   'ENG'    => English units
+		CHANFORM   - Read filter
+		NO_MSG     - Message suppression flag (LOGICAL)
+		   .TRUE.   => Suppress UDS_READ messages
+		   .FALSE.  => Allow UDS_READ messages (default)
+		SPECS_ONLY - Specification read only flag (LOGICAL)
+		   .TRUE.   => Only read UDS file specifications
+		   .FALSE.  => Read full UDS file (default)
+		FILL_X     - Fill even X values for Y channels flag (LOGICAL)
+		   .TRUE.   => Fill even X values
+		   .FALSE.  => Don't fill X array (default)
+		FN_INCR    - Write flag
+
+	   IOS - Return status flag (INTEGER):
+		 0  => OK, no errors
+		>0  => FORTRAN IOSTAT error flag
+		-1  => FORTRAN IOSTAT end-of-file flag
+		-2  => CALL parameter error
+		-3  => File open error
+		-4  => File read error
+		-5  => Illegal specification value
+
+	To apply any UDS_CONTROL parameters, set the desired field as in
+	UDS_C.DIMSYS='MET'  before the call to UDS_READ.  The UDS_CONTROL read
+	filters, if set, filter out any UDS files with corresponding fields not
+	matching the specified value.
+
+	The NUMFORM UDS_CONTROL field can be used to convert the floating
+	point number format and integer byte order of UDS files during the
+	read.  If NUMFORM is not set, numbers will be converted to the local
+	platform default format.  Floating point values stored in reserved
+	fields are not converted.
+
+	The DIMSYS UDS_CONTROL field can be used to convert the dimensional
+	system of UDS files during the read.  No conversion is performed by
+	default.  Dimensioned values stored in real "dummy" variables and
+	reserved fields are not converted with DIMSYS.
+
+	UDS_READ uses a routine called UDS_INIT to zero/blank initialize UDS
+	specifications that can be used by application programs before setting
+	UDS specifications when creating UDS files from non-UDS source data.
+	UDS_INIT blank-fills strings and zeros numbers, as required to
+	represent "empty" fields.  The call syntax is CALL UDS_INIT( UDS )
+	where UDS is a UDS STRUCTURE object.  The UDS_STR.FI header file must
+	be INCLUDE'd to use UDS_INIT.
+
+KNOWN PROBLEMS:
+	The older TSTNUM and CURNUM field names are not supported within the
+	UDS STRUCTURE; Use the new (larger) field names TSTNAM and CURNAM.

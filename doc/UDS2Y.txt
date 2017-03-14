@@ -1,0 +1,31 @@
+PROGRAM: UDS2Y				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	UDS2Y converts UDS X-Y files into y-series UDS files.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Either axis of an X-Y file can be used for the output y-axis
+	data, and it can be interpolated over the other input axis or
+	each point output with time or frequency used as the output
+	x-axis data type (assuming the data corresponded to an even
+	time or frequency step).
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS X-Y file must be supplied to the program.
+	UDS2Y prompts for the data to use for the output y and x-axes.
+	For interpolated, Y(x) or X(y), output a step value is also
+	prompted for.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	For interpolated, Y(x) or X(y), outputs UDS2Y starts at the
+	first data point and produces evenly spaced outputs until the
+	independent axis, (x) or (y), data reverses direction, if ever.
+	If this fails to capture the region of interest in a multi-valued
+	X-Y file preprocess the input with a program such as Trunc to
+	isolate an enclosing region of monotonic independent axis data.

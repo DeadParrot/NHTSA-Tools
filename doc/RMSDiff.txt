@@ -1,0 +1,17 @@
+PROGRAM: RMSDiff			PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	RMSDiff computes the root mean square difference between pairs of
+	UDS y-series files.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Any y-series UDS files can be used.  The two files are checked for
+	consistent DEL step values and units.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	None.

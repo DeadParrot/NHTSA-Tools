@@ -1,0 +1,224 @@
+!***********************************************************************
+!* UDS File Fortran Header for UDSIOX Interface
+!*
+!* Language: Fortran
+!*
+!* Author: Stuart G. Mentzer
+!*
+!* Date: 1999/08/20
+!***********************************************************************
+
+      ! Headers
+      INCLUDE 'platform.fi'
+
+
+      ! Header Record ________________________________________________
+
+
+      ! File Information
+      CHARACTER*12 FILEVER
+      INTEGER NCHAN
+      CHARACTER*10 FILEFORM
+      CHARACTER*5 NUMFORM
+      CHARACTER*3 DIMSYS
+
+      COMMON / FILE_C / FILEVER, FILEFORM, NUMFORM, DIMSYS
+      COMMON / FILE_N / NCHAN
+
+
+      ! Test Information
+      CHARACTER*15 TSTSRC
+      INTEGER TSTNO
+      CHARACTER*12 TSTNAM
+      CHARACTER*4 TSTNUM
+      CHARACTER*70 TITLE
+      CHARACTER*25 TSTPRF
+      CHARACTER*10 TSTREF
+      CHARACTER*3 TSTCFN
+      INTEGER IMPANG
+      REAL CLSSPD
+
+      EQUIVALENCE ( TSTNUM, TSTNAM(9:12) )
+
+      COMMON / TEST_C / TSTSRC, TSTNAM, TITLE, TSTPRF, TSTREF, TSTCFN
+      COMMON / TEST_N / TSTNO, IMPANG, CLSSPD
+
+
+      ! Component/Vehicle Information
+      INTEGER CMPNO
+      INTEGER VEHNO
+      CHARACTER*2 CMPTYP
+      CHARACTER*30 CMPDSC
+      CHARACTER*30 VEHDSC
+      CHARACTER*30 CMPNTD
+      CHARACTER*15 MAKE
+      CHARACTER*25 MODEL
+      INTEGER YEAR
+      CHARACTER*25 BODY
+      CHARACTER*4 ENGINE
+      REAL CMPWGT
+      REAL VEHTWT
+      REAL CMPSPD
+      REAL VEHSPD
+
+      EQUIVALENCE ( VEHNO, CMPNO )
+      EQUIVALENCE ( VEHDSC, CMPDSC )
+      EQUIVALENCE ( CMPNTD, CMPDSC )
+      EQUIVALENCE ( VEHTWT, CMPWGT )
+      EQUIVALENCE ( VEHSPD, CMPSPD )
+
+      COMMON / VEH_C / CMPTYP, MAKE, MODEL, BODY, ENGINE, CMPDSC
+      COMMON / VEH_N / CMPNO, YEAR, CMPWGT, CMPSPD
+
+
+      ! Occupant Information
+      CHARACTER*6 OCCTYP
+      INTEGER OCCAGE
+      CHARACTER*1 OCCSEX
+      REAL OCCWT
+      CHARACTER*2 DUMSIZ
+      CHARACTER*20 RESTR1
+      CHARACTER*20 RESTR2
+
+      COMMON / OCC_C / OCCTYP, OCCSEX, DUMSIZ, RESTR1, RESTR2
+      COMMON / OCC_N / OCCAGE, OCCWT
+
+
+      ! Injury Information
+      REAL HIC
+      REAL T1
+      REAL T2
+      REAL HICDTUP
+      REAL CLIP3M
+      REAL CSI
+      CHARACTER*1 AIS
+
+      COMMON / INJ_C / AIS
+      COMMON / INJ_N / HIC, T1, T2, HICDTUP, CLIP3M, CSI
+
+
+      ! Reserved
+      CHARACTER*132 HDR_RESV
+
+      COMMON / HDR_RESV_C / HDR_RESV
+
+
+      ! Component-2 Record ___________________________________________
+
+
+      ! Component/Vehicle-2 Information
+      INTEGER CMPNO2
+      INTEGER VEHNO2
+      CHARACTER*2 CMPTYP2
+      CHARACTER*30 CMPDSC2
+      CHARACTER*30 VEHDSC2
+      CHARACTER*30 CMPNTD2
+      CHARACTER*15 MAKE2
+      CHARACTER*25 MODEL2
+      INTEGER YEAR2
+      CHARACTER*25 BODY2
+      CHARACTER*4 ENGINE2
+      REAL CMPWGT2
+      REAL VEHTWT2
+      REAL CMPSPD2
+      REAL VEHSPD2
+
+      EQUIVALENCE ( VEHNO2, CMPNO2 )
+      EQUIVALENCE ( VEHDSC2, CMPDSC2 )
+      EQUIVALENCE ( CMPNTD2, CMPDSC2 )
+      EQUIVALENCE ( VEHTWT2, CMPWGT2 )
+      EQUIVALENCE ( VEHSPD2, CMPSPD2 )
+
+      COMMON / VEH2_C / CMPTYP2, MAKE2, MODEL2, BODY2, ENGINE2, CMPDSC2
+      COMMON / VEH2_N / CMPNO2, YEAR2, CMPWGT2, CMPSPD2
+
+
+      ! Occupant-2 Information
+      CHARACTER*6 OCCTYP2
+      INTEGER OCCAGE2
+      CHARACTER*1 OCCSEX2
+      REAL OCCWT2
+      CHARACTER*2 DUMSIZ2
+      CHARACTER*20 RESTR12
+      CHARACTER*20 RESTR22
+
+      COMMON / OCC2_C / OCCTYP2, OCCSEX2, DUMSIZ2, RESTR12, RESTR22
+      COMMON / OCC2_N / OCCAGE2, OCCWT2
+
+
+      ! Reserved
+      CHARACTER*326 CMP2_RESV
+
+      COMMON / CMP2_RESV_C / CMP2_RESV
+
+
+      ! Curve Header Record __________________________________________
+
+
+      ! Curve Information
+      INTEGER ICHAN
+      CHARACTER*10 CHANFORM
+      INTEGER CURNO
+      CHARACTER*12 CURNAM
+      CHARACTER*3 CURNUM
+      CHARACTER*30 SENATT
+      CHARACTER*2 SENLOC
+      INTEGER SENNUM
+      INTEGER BANDNO
+      INTEGER GAGNO
+      CHARACTER*2 AXIS
+      CHARACTER*20 YTYP
+      CHARACTER*20 YUNITS
+      CHARACTER*20 DATTYP
+      CHARACTER*20 UNITS
+      CHARACTER*20 XTYP
+      CHARACTER*20 XUNITS
+      CHARACTER*20 STATUS
+      CHARACTER*20 CURTYP
+      CHARACTER*20 FORM
+      CHARACTER*70 CURDSC
+      CHARACTER*70 DESC
+      INTEGER NFP
+      INTEGER NLP
+      REAL DEL
+      REAL INIVEL
+      REAL PREF
+      REAL FCUT
+      REAL FCOR
+      REAL FSTP
+      REAL SCLFAC
+
+      EQUIVALENCE ( CURNUM, CURNAM(10:12) )
+      EQUIVALENCE ( DATTYP, YTYP )
+      EQUIVALENCE ( UNITS, YUNITS )
+      EQUIVALENCE ( FORM, CURTYP )
+      EQUIVALENCE ( DESC, CURDSC )
+
+      COMMON / CURV_C / CHANFORM, CURNAM, SENATT, SENLOC, AXIS,         &
+     & YTYP, YUNITS, XTYP, XUNITS, STATUS, CURTYP, DESC
+      COMMON / CURV_N / ICHAN, CURNO, SENNUM, BANDNO, GAGNO, NFP, NLP,  &
+     & DEL, INIVEL, PREF, FCUT, FCOR, FSTP, SCLFAC
+
+
+      ! Supplementary Information
+      INTEGER ID1
+      INTEGER ID2
+      INTEGER ID3
+      INTEGER ID4
+      INTEGER ID5
+      REAL RD1
+      REAL RD2
+      REAL RD3
+      REAL RD4
+      REAL RD5
+      CHARACTER*20 CD1
+      CHARACTER*70 CD2
+
+      COMMON / SUP_C / CD1, CD2
+      COMMON / SUP_N / ID1, ID2, ID3, ID4, ID5, RD1, RD2, RD3, RD4, RD5
+
+
+      ! Reserved
+      CHARACTER*68 CURV_RESV
+
+      COMMON / CURV_RESV_C / CURV_RESV

@@ -1,0 +1,37 @@
+PROGRAM: Clip (v.2.1)			PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	Clip computes the maximum 3 msec clip value of a resultant chest
+	acceleration time series.  The clip value is the largest value the
+	signal equals or exceeds for at least a 3 msec contiguous time span.
+
+	Clip also computes the Chest Severity Index (CSI) which is the integral
+	of the acceleration values to the 2.5 power over the pulse time span
+	from time zero to the end.
+
+PROGRAM FEATURES/OPTIONS:
+
+	The program checks that the file is a resultant time series and issues
+	a warning if the data isn't chest acceleration or is not filtered at
+	the standard 300 Hz cutoff.
+
+	The clip value is computed based on the linearly interpolated input
+	signal, and Clip can accept input signals with a time step that is not
+	a divisor of 3 msec.  The input signal does not have to start at or
+	before time zero but warnings are displayed if it does not.
+
+	A report file named clip.rep is generated if the REP command line
+	argument is used.
+
+	A new version of the UDS file containing the computed Clip3M and CSI
+	values will be optionally created by the program if the UPDATE
+	command line option is used.
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS file containing a resultant time series (typically
+	chest acceleration filtered to 300 Hz cutoff) must be supplied to the
+	program.

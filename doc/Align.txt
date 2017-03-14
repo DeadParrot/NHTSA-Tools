@@ -1,0 +1,36 @@
+PROGRAM: Align				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	Align performs alignment of a signal to a reference signal.
+	Either peak, minimum variance, or integral-based alignment can be
+	performed.  The array tail indices can be optionally adjusted to
+	match.
+
+PROGRAM FEATURES/OPTIONS:
+
+	A reference signal is used as the basis for aligning a comparison
+	signal.  The user is given a choice of the alignment methods and
+	Align performs the alignment.  Multiple comparison curves can be
+	used with the same reference curve.
+
+	The peak method simply aligns the time/x value at which the signals'
+	largest magnitude value occurs.
+
+	The RMS method finds the time/x shift that minimizes the
+	root-mean-square (RMS) difference between the signals.  The shift is
+	limited to a user-specified percent of the comparison signal span since
+	the RMS value is based only on the portion of the signals that overlap.
+
+	The integral-based method aligns the time/x value at which a specified
+	percent of the signals' integral from x=0 to the end tail occurs.
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS file must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	None.

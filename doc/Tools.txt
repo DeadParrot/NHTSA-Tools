@@ -1,0 +1,153 @@
+			The NHTSA Tools Program Suite
+
+
+The NHTSA Tools program suite is a set of applications for displaying and
+processing data from the NHTSA crash test data bases and the NHTSA UDS data
+files.  The program suite is available for a number of common platforms.
+
+
+
+General Information
+
+The Tools UDS programs work with the portable UDS-1992 files.  UDS-1992 files
+can be directly transferred between supported platforms without conversion.
+
+
+
+On-Line Documentation
+
+Documentation for each program can be found in a file with a name of the form
+<prog_name>.txt.  The documentation is found under the doc subdirectory of the
+Tools directory.
+
+The Doc command allows quick display of the Doc files with the syntax:
+
+	Doc <prog_name>   or   Doc <doc_file_name>
+
+for other documentation files.
+
+A descriptive list of available programs can be displayed with the command:
+
+	Doc Progs   or   Doc Progs<platform>
+
+for platform-specific programs, where <platform> is the platform extension
+(e.g., VMS).
+
+Platform-specific usage information can be displayed with the command:
+
+	Doc Tools<platform>
+
+A change history for the NHTSA Tools programs can be displayed with the
+command:
+
+	Doc ToolsChg
+
+
+
+Template/Hitlist Capable Programs
+
+Many Tools programs accept template or hitlist file name entry.  This allows
+a group of files to be specified at one time.  A template is a file name
+specification with wildcard characters and repeat groups in parens (see
+documentation for the LisGen program for more information on templates).  A
+hitlist is an ASCII file containing a list of files to operate on, one file
+name per record.
+
+The programs automatically determine whether the input specification is a
+template, hitlist, or single file specification.  If the first file
+specification for an operation is a template or hitlist the user will be
+able to view, modify, and add to the file list before processing begins;
+if the first specification is a single file name then that file will be
+read and processed before the program prompts for another file specification
+(to force the program into "list" mode make the single file name into a
+template by appending a wild-card character or enclosing it in parens).
+
+When a list of files has been entered the program can optionally process all
+the files in an automated batch mode.  The program prompts for batch mode are
+generic and not file-specific, and the operations to be performed on the list
+of files must be sufficiently similar.
+
+These programs can also accept template/hitlist and other command line
+arguments.  The basic command line syntax is:
+
+  <prog_name> [[T=]<template|hitlist>] [[NO_]BATCH] [NO_INCR] [REP]
+              [OUT[=<outlist>]] [DIR=<dir_out>] [?] [??]
+
+where the argument usage is:
+
+  <template|hitlist>	Input file name template or hitlist file name
+  BATCH/NO_BATCH	Always/never apply batch processing
+  NO_INCR		Don't increment names of existing output files
+  REP			Generate a report file in <prog_name>.rep
+  OUT=<outlist>		Generate an output list file [<prog_name>.out]
+  DIR=<dir_out>		Output to directory <dir_out>
+  ?			Display command line syntax
+  ??			Display command line help
+
+All arguments are optional and can be optionally preceded by a - or /
+character.  Arguments containing argument separators, such as spaces,
+should be enclosed in double quotes ("<argument>").  Some programs have
+additional arguments.  Not all arguments are active for each program (e.g.,
+there are no output files for a plotting program so DIR, REP, and OUT are
+not active; NO_INCR is not relevant on platforms that support file
+versions).  If not ambiguous with program-specific command line arguments
+the T= in front of the <template|hitlist> can be omitted.
+
+A <template|hitlist> argument is processed as a complete file list.  If a
+<template|hitlist> and BATCH are specified the program will operate in a
+"one-pass" mode, terminating after processing the files in the list.  The
+presence of BATCH or NO_BATCH prevents the prompt about batch processing
+when a file list has been entered.
+
+If a DIR=<dir_out> argument is not used the program outputs will go to the
+first write-accesible directory in the following list:
+
+ - The current working directory
+
+ - The directory specified in the DIR_OUT environment variable
+   (logical on OpenVMS), if any
+
+ - The OUTPUT subdirectory of the user's home directory
+
+Under OpenVMS it is necessary to define symbols for the program names in
+order to use command line arguments.  Symbols for the programs on the
+[TOOLS] account are set up with the TOOLS$SYM command.
+
+
+
+Batch Processing
+
+With the built-in template/hitlist "batch" processing capabilities of most
+Tools programs there is less need for procedures to automate/submit large
+time-consuming runs.  On systems with true batch queues, such as OpenVMS,
+there are alternatives such as opening another process in a separate
+window or with a SPAWN/NOWAIT type of run.  If a submit-to-batch-queue
+capability is needed for large processing jobs, the method used previously
+(with a response program "driver") can be applied equally well with the
+new programs, and can be developed as needed.
+
+
+
+Output File Naming
+
+The NHTSA Tools programs generally select default output file names based
+on the UDS file naming convention (see UDS_Name.txt).  For interactive runs
+these names can be overridden.
+
+Most of the programs will add or increment a version number on the default
+output file name if a file of that name already exists.  This avoids
+accidental overwriting of files.  Unwanted files should be deleted before
+repeating a program run to avoid multiple versions of a file name.
+
+
+
+Programming
+
+The source code for the Tools software is available from NHTSA/OCR.  Please
+contact NHTSA/OCR for information on currently supported platforms and other
+programming issues.
+
+Most of the Tools programs have been written in a highly portable form with
+all platform-dependencies isolated in a few routines.  Most of the code is in
+Fortran-77.  The portable programs use some Fortran extensions such as
+DO WHILE, END DO, and STRUCTURE's.

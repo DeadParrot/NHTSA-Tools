@@ -1,0 +1,56 @@
+PROGRAM: UDSTool			PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	UDSTool performs interactive display, modification, and creation of UDS
+	files. The measurement data and specifications of a UDS file can be
+	viewed and changed.
+
+PROGRAM FEATURES/OPTIONS:
+
+	The display options in UDSTool include an overview or table of the
+	signal and its relevant integrals/derivatives or display of the UDS
+	specification fields. An x-axis window can be applied to the overview
+	and table displays and subsampling is available for the table listing.
+	Acceleration integrals use the INIVEL value for the time-zero
+	velocity; other integrals use zero for the initial value.
+	Displacement derivatives use INIVEL for the time-zero linear velocity.
+	Output from any of these display options can be optionally routed to a
+	file.
+
+	The modifications which can be performed with UDSTool include
+	calibration, bias, interpolation, value, domain, and specification
+	changes.  The calibration and bias changes are segmented linear
+	functions over the even x-axis or array index step.  Individual data
+	values can be changed or a UDS or ASCII file can be read to replace the
+	entire data set.
+
+	Output of the data in its current state can be performed at any point
+	in the process.
+
+	A new UDS file can be created from scratch by entering a name of a
+	nonexistent UDS file. Default values for key fields are provided and
+	can be altered. Other specification fields can then be entered by
+	using the Modify|Specs option. Measurement data can be read from a
+	UDS or ASCII file (the type of file is determined automatically).
+
+	ASCII measurement data files may have a non-numeric header of arbitrary
+	length followed by columns of numbers.  UDSTool analyzes the column
+	structure of the first numeric record and prompts the user for the
+	column to read for the Y and, for X-Y files, X data.
+
+	Defaults are provided for most of the user prompts. Verification for
+	the changes and file I/O are printed to log the operation sequence.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	In general, the correction of timing, bias, and calibration errors is
+	dependent on some supplementary information, such as the assessment of
+	related measurements (same test and axis), supporting measurements
+	(such as the pre- and post-test relative displacements of
+	accelerometers or estimates from another source such as film data), and
+	the experience of the analyst in identifying various errors.  The VeCor
+	program performs automated correction of uniaxial test data based on
+	such information and physical principles.

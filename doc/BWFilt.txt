@@ -1,0 +1,38 @@
+PROGRAM: BWFilt				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  ASGI
+
+PROGRAM FUNCTION AND METHODS:
+
+	BWFilt performs two pass, zero phase shift, second order
+	Butterworth filtering of UDS time series files.  Ten point
+	tail averaging is used for the start-up.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Default cutoff frequencies are provided based on current NHTSA
+	filtering standards.
+
+	Default output file names are provided using the current file
+	naming conventions.
+
+	BWFilt has been modified to provide -3 db at cutoff and to meet
+	the J211 SAE standard (11/83).  This was accomplished by applying
+	a 1.25 factor to the cutoff value in the FILTER subroutine.
+
+	BWFilt has been modified to eliminate initial tail discontinuity
+	for non-transient signals by using inverted, mirrored values for
+	the appended initial portion.  The final tail treatment has also
+	been improved with an inverted, mirrored extrapolation for the
+	points used to start the second filtering pass.
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS y-series file must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	The general nature of this filter is that there is some distortion
+	of the data tail values and integrals.  It is not recommended using
+	BWFilt for filtering below 100 Hz if such quantitative accuracy is
+	important.

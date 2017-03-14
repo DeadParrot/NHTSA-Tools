@@ -1,0 +1,15 @@
+!***********************************************************************
+!* File STRUCTURE Header Wrapper
+!*
+!* Language: Fortran
+!*
+!* Platform: Linux
+!*
+!* Compiler: GFortran
+!*
+!* Author: Stuart G. Mentzer
+!*
+!* Date: 2017/02/07
+!***********************************************************************
+
+      INCLUDE 'file1.fi'

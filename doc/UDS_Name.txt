@@ -1,0 +1,149 @@
+			UDS File Naming Convention
+
+
+This is a guideline for NHTSA UDS file naming.  These conventions are meant to
+apply to raw and processed test data and generated (e.g., simulation) data.
+The purpose of this guideline is to provide unique file names that are
+indicative of the file contents.  Raw test data is uniquely named by the test
+and curve numbers, so this guideline focuses on how to modify a UDS file name
+after processing a single file and how to generate a UDS file name after
+combining UDS files.
+
+Only the most common data entities are shown.  In other cases, it is expected
+that unique names should be available which maintain the basic naming
+structure.  Alternative uses for some of the name substrings is reasonable for
+special applications.  Newly identified entities which are frequently used will
+be added to this list.
+
+The philosophy of UDS file naming is that programs should avoid requiring input
+files to have particular types of names, but that adhering to this structure
+will simplify the user interface to UDS file data.  Where reasonable, programs
+should generate default file names that follow this convention.
+________________________________________________________________________________
+
+Columns:		12345678.abc.uds
+
+Possible Characters:	V1845AA0.001.uds
+			B____CCA.AVG
+			C    DDB.A__
+			S    EFC.DIF
+			_    FLD.D__
+			     GME.PRD
+			     INF.P__
+			     NQG.RES
+			     OxH.RAT
+			     P_M.R__
+			     S P.SUM
+			     T X.SLT
+			     V _.SL#
+			     _  .SLa
+			        .SL_
+			        .S__
+			        ._#_
+			        .__s
+
+
+Columns		Interpretation
+_______		________________________________________________________________
+
+1		V - Vehicle test data
+		B - Biomechanics test data
+		C - Component test data
+		S - Signal waveform generated data / Simulated/generated data
+		_ - other data source code
+
+
+2 - 5		1845 - test number
+		____ - other test name code
+
+
+6		A - Acceleration / Angular Acceleration
+		C - Curvature
+		D - Displacement / Angular Displacement / Dimensionless
+		E - Energy
+		F - Force
+                G - Gauge Pressure
+		I - Impulse / Angular Impulse
+		N - Noise
+		O - Other
+		P - Pressure
+		S - Strain / Static force
+		T - Time / Torque
+		V - Velocity / Angular Velocity / Voltage
+		_ - other Y-data type code
+
+
+7		A - As Measured
+		C - Computed
+		D - DFT
+		F - Filtered / Channel Failed
+		L - Aligned
+                M - Meaningless / Modified
+                N - No Data
+                Q - Questionable Data
+                S - Subsampled / Scaled
+		T - Truncated
+		x - X-data type code for X-Y files
+		_ - other data status code
+
+
+8		0 - unfiltered/as delivered data
+		A - 15 Hz cutoff data (filtered or DFT)
+		B - 30 Hz cutoff data (filtered or DFT)
+		C - 60 Hz cutoff data (filtered or DFT)
+		D - 100 Hz cutoff data (filtered or DFT)
+		E - 300 Hz cutoff data (filtered or DFT)
+		F - 500 Hz cutoff data (filtered or DFT)
+		G - 1000 Hz cutoff data (filtered or DFT)
+		H - Biomechanics standard filter process data
+		M - Magnitude (DFT)
+		P - Phase (DFT)
+		X - nonstandard filtered or DFT data
+		_ - other processing description code
+
+
+a - c		001 - curve number
+
+		AVG - Average (general)
+		A__ - Average (specific)
+
+		DIF - Difference (general)
+		D__ - Difference (specific)
+
+		PRD - Product (general)
+		P__ - Product (specific)
+
+		RAT - Ratio (general)
+		R__ - Ratio (specific)
+
+		RES - Resultant (general)
+		R__ - Resultant (specific)
+
+		SUM - Sum (general)
+		SLT - Sum of Load cells, Total (all load cells)
+		SL# - Sum of Load cells in column # (0-9, 0 => column 10)
+		SLa - Sum of Load cells in row a (A-D)
+		SL_ - Sum of Load cells
+		S__ - Sum (specific)
+
+		_#_ - Vehicle/component number (non-occupant attachment) (1-2)
+
+		_#_ - Occupant location code (add 5 for vehicle/component 2)
+		      (1-9 or O => Other)
+
+		__s - Sensor attachment code:
+		  O - Occupant (general)
+		  H - Head
+		  C - Chest
+		  P - Pelvis
+		  :
+		  V - Vehicle (general)
+		  E - Engine
+		  :
+		  I - Impactor (general)
+		  C - Component (general)
+		  _ - other sensor attachment code
+
+		___ - other data description code
+
+________________________________________________________________________________

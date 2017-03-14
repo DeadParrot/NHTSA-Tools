@@ -1,0 +1,58 @@
+Floating Point Formats of Four Byte Numbers:
+
+
+
+VAX:
+
+	    4       3         2        1
+
+	3      2 2      1 1
+	1      4 3      6 5      8 76     0
+	++++++++ ++++++++ ++++++++ ++++++++
+	|---fraction----| ||--exp--||frac-|
+			  s
+			  i
+			  g
+			  n
+
+		       4  3  2  1
+	100 decimal = 00 00 43 C8
+	  0 decimal = 00 00 00 00
+
+- exp=0, sign=0 => value=0 (regardless of mantissa)
+- exp=0 & sign=1 => reserved operand fault
+- exp offset is 128 for .1<frac> * 2^(exp-128)
+
+
+
+IEEE:
+
+	    4       3         2        1
+
+	33     2 2      1 1
+	10     4 3      6 5      8 7      0
+	++++++++ ++++++++ ++++++++ ++++++++
+	||--exp--||-------fraction--------|
+	s
+	i
+	g
+	n
+
+		       4  3  2  1
+	100 decimal = 42 C8 00 00
+	  0 decimal = 00 00 00 00
+
+- valid exp = one of (1,254) (same as (-126,127))
+- exp=255 => infinity/NAN
+- exp=0, frac=0 => value=0
+- exp=0, frac!=0 => denormal
+- exp=0, sign=1 = -0 (this is valid, unlike VAX)
+- exp offset is 127 for 1.<frac> * 2^(exp-127)
+- map exp=0 cases to VAX 0 (w/ sign=0) to map denormals to zero
+
+
+
+SUN:
+
+SUN floating point numbers, like their integers, are big endian, and are
+simply byte-reversed from the IEEE format shown above.

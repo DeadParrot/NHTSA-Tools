@@ -1,0 +1,32 @@
+PROGRAM: Average			PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	Average computes the average of UDS y-series files.
+
+PROGRAM FEATURES/OPTIONS:
+
+	Consistency checking is performed to warn the user if certain key
+	fields are not the same in the input files. Some of the fields must be
+	consistent or an error is generated. Other fields are blanked or set
+	to zero if an inconsistency is present.
+
+	The output array dimensions are the intersection of the input file
+	ranges.
+
+	The CURNAM is set to AVG. The default output file extension may be AVG
+	or A followed by characters indicating the sensor attachment, if
+	consistent.
+
+	A report file named average.rep is generated if the REP command line
+	argument is used.
+
+SETUP/RUN INSTRUCTIONS:
+
+	Existing UDS y-series files must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	None.

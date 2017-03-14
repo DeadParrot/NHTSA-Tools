@@ -1,0 +1,194 @@
+PROGRAM: ATB2UDS			PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Randa Radwan (ATB2UDS v2.0), Seth Grimes (v4.2)
+
+PROGRAM FUNCTION AND METHODS:
+
+	The ATB2UDS program extracts motion and force histories from ATB output
+	(CVS version 4.2) and writes those to UDS files.
+
+	The program inputs the post-processing time history data file (FORTRAN
+	unit No.  8) which can be output by ATB.  The generation of this file by
+	ATB is controlled by the value of NPRT(4) on ATB input card A.5.  A
+	postive value of +1 to +4 will result in the above file being output.
+
+	Please refer to pp.  30-31 and 90-93 of the ATB (CVS) User's Manual
+	(VOLUME III) for more detail on the generation and use of the ATB output
+	post-processing time history data file.
+
+PROGRAM FEATURES/OPTIONS:
+
+	ATB2UDS is basically a conversion program.  It acquires the AVAILABLE
+	information, regarding the time histories, from the ATB output file and
+	writes it to UDS files.
+
+	ATB2UDS Options
+	---------------
+
+	The program provides UDS file output of the following time histories as
+	acquired from the ATB output file :
+
+	o  linear accelerations :  components and resultant of linear
+	                           acceleration (in local segment
+	                           reference) for points on segments -
+	                           (as specified by ATB input cards H.1)
+
+	o  linear velocities :     components and resultant of linear
+	                           velocities (in vehicle reference) -
+	                           (as specified by ATB input cards H.2)
+
+	o  linear displacements    components and resultant of linear
+	                           positions (in vehicle reference)for points
+	                           on segments - (as specified by ATB input
+	                           cards H.3)
+
+	o  angular accelerations   components and resultant of angular
+	                           accelerations (in local segment reference)
+	                           for segments - (as specified by ATB input
+	                           cards H.4)
+
+	o  angular velocities      components and resultant of angular
+	                           velocities (in vehicle reference) for
+	                           segments - (as specified by ATB input
+	                           cards H.5)
+
+	o  angular displacements   components and resultant of angular
+	                           rotations (in vehicle reference)
+	                           for segments - (as specified by ATB input
+	                           cards H.6)
+
+	0  plane forces            contact forces for the allowed contacts
+	                           between planes and segments - (as
+	                           specified by ATB input cards F.1)
+
+	--------------------------- NOTE --------------------------------------
+	The plane forces, for the allowed contacts, are ALWAYS available in the
+	ATB post-processing file; while the motion histories are optional and
+	are only available if requested on ATB input cards H.1 through H.6.
+	-----------------------------------------------------------------------
+
+	ATB2UDS Features
+	----------------
+
+	1. HEADER INFORMATION
+
+	The following variables are set for each curve (history) in an output
+	UDS file :
+
+	  - TSTPRF
+	  - TSTSRC
+	  - TSTREF (** This is set to the first 10 characters of the ATB
+	    run description as entered on card A.2, to map the UDS files
+	    with the specific ATB run)
+	  - TSTNAM (** This is input by the user to qualify a given ATB run.)
+	  - CURNAM
+	  - CURTYP
+	  - SENATT
+	  - AXIS
+	  - YTYP, YUNITS, XTYP, XUNITS
+	  - NFP
+	  - NLP
+	  - DEL
+	  - STATUS
+	  - RD1, RD2, and RD3 (set to co-ordinates of the point on a given
+	    segment for which linear motion histories are output)
+	  - CURDSC
+
+	2. OUTPUT DATA SAMPLING RATE (DEL)
+
+	The time interval for data output, DT (as specified by the ATB input
+	card A.4), is not available from the ATB output file.  ATB2DUS computes
+	the smallest time interval at which data is available and outputs the
+	corresponding number of points to the UDS files.  Thus, it is possible
+	to get a finer sampling of the data then specified by DT as ATB can
+	output the data at the end of each successful integration step (See
+	specification of ATB input NPRT(26) card A.5).
+
+	To control the amount of printout from a regular ATB run but still
+	obtain a fine sampling of the histories, through UDS files from ATB2UDS,
+	you can specify a large value for DT relative to HMAX (on ATB input card
+	A.4) while specifying NPRT(4)=2 or 3 and NPRT(26)=0 (on ATB input card
+	A.5).
+
+	3. UDS OUTPUT FILES NOMENCLATURE
+
+	The UDS output files are named Snnnnaa0b.mmm  such that:
+
+		nnnn :==   the value of TSTNAM as entered by the user
+		            to qualify the given ATB run
+
+		aa   :==   AC, VC, DC, FC  corresponding to a computed
+		           acceleration, velocity, displacement or
+		           force history
+
+		b    :==   X , Y, Z and R for x, y, z components and
+		           resultant of the motion histories  OR
+		           P for the plane forces histories
+
+		mmm  :==   sequential curve number to uniquely qualify
+		           each history (i.e. each output UDS file)
+
+
+
+	4.  ATB2UDS OUTPUT LISTING FILE
+
+	The program generates a listing file, called ATB2UDS.OUT, which contains
+	the names of the output UDS files and a description of their content.
+
+
+SETUP/RUN INSTRUCTIONS:
+
+	The following inputs are required:
+
+	1. ATB output file name
+
+	2. An ATB run number, up to 4 digits (to be placed the UDS file TSTNAM
+	   field and will be part of the UDS file names)
+
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	In addition to the above histories the ATB (unit 8) output file also
+	contains, if available from the simulated model, the following
+	histories:
+
+	o  joint parameters :-
+	                  the lock condition, angles and torques for joints
+	                  (as specified by input cards H.7)
+
+	o  belt forces :- strain and anchor point forces for the allowed
+	                  contacts between belts and segments (as specified
+	                  by input cards F.2)
+
+	o  harness-belt forces :-
+	                  strain and endpoint forces for all belt sections
+	                  of the harness belts (from points specified as
+	                  endpoints on input cards F.8.d)
+
+	o  spring damper forces :-
+	                  (as specified by input cards D.8)
+
+	o  segment contact forces :-
+	                  contact forces for the allowed contacts between
+	                  segments and other segments (as specified by input
+	                  cards F.3)
+
+	o  airbag forces :-
+	                  airbag parameters and contact forces for the
+	                  allowed contacts between airbags and segments
+	                  (as specified by input cards F.6)
+
+	If the need arises, a future upgrade of ATB2UDS can be provided to write
+	these histories to UDS file format.
+
+	***********************************************************************
+	*******************************  NOTE *********************************
+
+	In future versions of ATB(CVS), there is a possibility that the
+	contents of the post-processing time history data file may be CHANGED!
+	Thus the ATB2UDS program MUST be changed accordingly!! The routines that
+	control/designate the output of the time histories in the ATB program
+	are OUTPUT and HEDING.
+
+	***********************************************************************
+	***********************************************************************

@@ -1,0 +1,14 @@
+#!/bin/bash
+# NHTSA Linux Intel 64-Bit Setup
+
+if [ -z "$NHTSA" ]; then
+  export NHTSA=$(dirname $(dirname $(dirname $(dirname $(dirname $(readlink -m "${BASH_SOURCE[0]}"))))))
+fi
+
+export PlatformBits=Linux/IC/64
+
+export PATH=$PATH:$NHTSA/bin/$PlatformBits
+
+source setIC.64
+
+source $NHTSA/bin/Linux/IC/setProject

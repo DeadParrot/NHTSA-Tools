@@ -1,0 +1,16 @@
+PROGRAM: Scale				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	Scale allows scaling of UDS file X or Y axes.  The type and units
+	of the scaled data can also be changed.
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing UDS file must be supplied to the program.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	None.

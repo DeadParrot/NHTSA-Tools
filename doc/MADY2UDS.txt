@@ -1,0 +1,75 @@
+PROGRAM: MADY2UDS			PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: NHTSA, NRD-11			DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  S. Summers
+
+PROGRAM FUNCTION AND METHODS:
+
+	MADY2UDS converts the time history data from madymo runs into a NHTSA
+	UDS files.  This program has been tested with the LINACC.DAT and the
+	FORCES.DAT output files from MADYMO.  The output UDS file contains a
+	location/measurement from the madymo data file.
+
+
+PROGRAM FEATURES/OPTIONS:
+
+	One MADYMO location/measurement is output per UDS file.  The user is
+	prompted to specify which location and measurement should be output.
+	The program will accept ranges and the * wildcard when specifying the
+	locations/measurements to be output.  Using the * wildcard means that
+	all the locations/measurements will be output.  If the the * wildcard is
+	present anywhere on the input line, then all the locations/measurements
+	will be output.
+
+	There is currently a limit of 20 curves that can be converted in a
+	single pass.  Additional curves can be processed by using multiple
+	passes through the file.
+
+
+SETUP/RUN INSTRUCTIONS:
+
+	The user must supply the name of the MADYMO file, identify the location
+	and measurement to be output, and supply the name of the output UDS
+	file.
+
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	The MADYMO data file must start with time zero.
+
+
+EXAMPLE:
+
+MADY2UDS
+
+Enter MADYMO File Name, CR or ^Z to end >>  LINACC.DAT
+
+ Enter location(s) for UDS Data(ie: 1,2,5-8,...)
+           1   HEAD
+           2   SPINE T1
+           3   UPPER RIB
+           4   MIDDLE RIB
+           5   LOWER RIB
+           6   SPINE T12
+           7   PELVIS
+
+  Location >> 1,2
+
+ Enter Measurement(s) for UDS Data (ie: 1,2,5-8...)
+          1   RES. ACCELERATION (M/S**2)
+          2   X-COMP. ACCELERATION (M/S**2)
+          3   Y-COMP. ACCELERATION (M/S**2)
+          4   Z-COMP. ACCELERATION (M/S**2)
+
+  Measurement >> 1
+
+ HEAD
+ RES. ACCELERATION (M/S**2)
+
+UDS File Name : HEAD.ACC
+
+ SPINE T1
+ RES. ACCELERATION (M/S**2)
+
+UDS File Name :  SPINE.ACC
+
+Enter MADYMO File Name, CR or ^Z to end >>

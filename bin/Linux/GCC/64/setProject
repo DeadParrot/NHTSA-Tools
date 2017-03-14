@@ -1,0 +1,12 @@
+#!/bin/bash
+# NHTSA Linux GCC 64-Bit Setup
+
+if [ -z "$NHTSA" ]; then
+  export NHTSA=$(dirname $(dirname $(dirname $(dirname $(dirname $(readlink -m "${BASH_SOURCE[0]}"))))))
+fi
+
+export PlatformBits=Linux/GCC/64
+
+export PATH=$PATH:$NHTSA/bin/$PlatformBits
+
+source $NHTSA/bin/Linux/GCC/setProject

@@ -1,0 +1,52 @@
+!***********************************************************************
+!* Platform-Dependent Header
+!*
+!* Language: Fortran
+!*
+!* Platform: Linux
+!*
+!* Compiler: Fortran
+!*
+!* Author: Stuart G. Mentzer
+!*         Andrew Orndorff
+!*
+!* Date: 1999/09/13
+!***********************************************************************
+
+      ! Name
+      CHARACTER PLAT_NAME*10
+      PARAMETER ( PLAT_NAME = 'Linux' )
+
+      ! Floating point format
+      CHARACTER NUMFORM_P*5
+      PARAMETER ( NUMFORM_P = 'IEEE' )
+
+      ! Screen device name
+      CHARACTER SCREEN_DEV*10
+      PARAMETER ( SCREEN_DEV = '/dev/tty' )
+
+      ! File name limits
+      INTEGER LEN_FN, LEN_FN_NAM, LEN_FN_EXT
+      PARAMETER ( LEN_FN = 255, LEN_FN_NAM = 255, LEN_FN_EXT = 255 )
+
+      ! Path characters
+      CHARACTER PATH_CHARS
+      PARAMETER ( PATH_CHARS = '/' )
+      CHARACTER DIR_FILE_SEP
+      PARAMETER ( DIR_FILE_SEP = '/' )
+      CHARACTER VERSION_SEP
+      PARAMETER ( VERSION_SEP = '~' )
+      CHARACTER PATH_SEP
+      PARAMETER ( PATH_SEP = ':' )
+
+      ! Wildcard characters
+      CHARACTER WILDCARD_CHARS*2
+      PARAMETER ( WILDCARD_CHARS = '*?' )
+
+      ! File name case-sensitivity
+      LOGICAL CASE_SENSITIVE_FN
+      PARAMETER ( CASE_SENSITIVE_FN = .TRUE. )
+
+      ! Unformatted RECL unit size in bytes
+      INTEGER RECL_USIZE
+      PARAMETER ( RECL_USIZE = 4 )

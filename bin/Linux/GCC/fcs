@@ -1,0 +1,12 @@
+#!/bin/bash
+# GFortran Compile Syntax
+
+if   [ -f $1     ]; then FortranFile=$1
+elif [ -f $1.for ]; then FortranFile=$1.for
+elif [ -f $1.f90 ]; then FortranFile=$1.f90
+elif [ -f $1.f   ]; then FortranFile=$1.f
+fi
+
+[ "$FortranFile" ] && shift
+
+gfortran -pipe -Wall -Wextra -Wsurprising -Wno-unused-parameter -x f95-cpp-input -fsyntax-only -c $@ $FortranFile

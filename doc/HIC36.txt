@@ -1,0 +1,33 @@
+PROGRAM: HIC36				PROGRAM MODIFICATION DATE:  2003/07/28
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 2003/07/28
+AUTHOR:  Stuart G. Mentzer
+
+PROGRAM FUNCTION AND METHODS:
+
+	HIC36 finds the maximum 36 msec Head Injury Criterion (HIC) value of
+	a head cg resultant acceleration time seies and the corresponding time
+	interval. The HIC value is the integral of the acceleration (in G'S)
+	to the 2.5 power divided by the time interval to the 1.5 power. The
+	time interval is restricted in HIC36 to be at most 36 msec.
+
+	HIC36 uses an efficient branch and bound algorithm which finds the
+	global maximum while exploiting the monotonicities within the HIC
+	function. HIC36 is an adaptation of HIC with the additional
+	constraint on the time interval.
+
+	See report DOT-HS-806-681 for a	description of the basic algorithm.
+
+PROGRAM FEATURES/OPTIONS:
+
+	A new version of the UDS file with the computed HIC value is output
+	to the user's account if requested with the UPDATE command line
+	argument.
+
+SETUP/RUN INSTRUCTIONS:
+
+	An existing resultant time series must be supplied to the program.
+	If the data isn't raw head cg acceleration a warning is produced.
+
+KNOWN PROBLEMS/CONSTRAINTS:
+
+	None.

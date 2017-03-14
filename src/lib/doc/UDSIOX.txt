@@ -1,0 +1,141 @@
+ROUTINE: UDSIOX				ROUTINE MODIFICATION DATE:  1997/10/01
+SUPPORT: ISSI				DOC FILE MODIFICATION DATE: 1997/10/01
+AUTHOR:  Stuart G. Mentzer
+
+ROUTINE FUNCTION AND METHODS:
+
+	UDSIOX performs input and output of UDS files with options for
+	opening the UDS files, reading only the specification data, and
+	provides error messages and an integer status flag to the calling
+	routine.  UDSIOX supports one Y or X-Y format channel in each UDS
+	file.  An alternative ENTRY point to UDSIOX called UDSIOY with
+	only Y channel support is also available.  The newer
+	STRUCTURE-based UDS_READ/UDS_WRITE routines are recommended
+	instead of UDSIOX.
+
+ROUTINE FEATURES/OPTIONS:
+
+	Error messages, handling, and status flags are incorporated.
+	There is a read spec's only option.  Error and warning messages
+	can be suppressed by the calling program.
+
+	The named file is opened before the I/O is performed.  A blank
+	file name implies an open file, and UDSIOX does a REWIND before
+	I/O.  When reading a file, the file is opened with read-only
+	access to allow reading any files for which the user has read
+	access privilege.
+
+	UDSIOX supports a single Y format (y-axis series with evenly
+	DEL-spaced x-axis values) or X-Y format (series of x,y pairs)
+	channel in each UDS file.  The first Y or X-Y channel found is
+	read and a single Y or X-Y channel is written.  The X array values
+	are set for Y format channels using the even DEL step.
+
+	If the UDSIOY call is used, no X parameter is sent and X-Y files
+	are not supported.  UDSIOY is provided so that no X array needs to
+	be declared for programs that do not need to support X-Y files.
+
+	The array dimensions are fully checked for validity and are
+	truncated when necessary to fit within the specified calling
+	program bounds.
+
+USAGE INSTRUCTIONS:
+
+	The calling routine and other routines using the UDS fields should
+	have:
+
+		INCLUDE 'udsiox.fi'
+
+	with the directory containing udsiox.fi on the Fortran include
+	file search path.
+
+	The calling program sends UDSIOX the array bounds, NFP_L and
+	NLP_U.  The best approach is probably to define them as parameters
+	and use them throughout the program.  For example:
+
+		INTEGER NFP_L, NLP_U
+		PARAMETER ( NFP_L = -1000, NLP_U = 10000 )
+		REAL X(NFP_L:NLP_U), Y(NFP_L:NLP_U)
+
+	The NUMFORM_R parameter can be used to convert the floating point
+	number format of UDS files during I/O.  If NUMFORM_R is not set,
+	numbers will be converted to the local platform default format.
+	Floating point values stored in reserved fields are not converted.
+	Conversion on UDS file writes do not alter the number format of
+	the UDS variables in the calling routine.
+
+	The DIMSYS_R parameter can be used to convert the dimensional
+	system of UDS files during I/O.  No conversion is performed by
+	default.  Dimensioned values stored in real "dummy" variables and
+	reserved fields are not converted with DIMSYS_R.  Conversion on
+	UDS file writes do not alter the dimensional system of the UDS
+	variables in the calling routine.
+
+	The call syntax is:
+
+		CALL UDSIOX( ROW, SOF, FILNAM, LUN, X, Y, NFP_L, NLP_U,
+		             NUMFORM_R, DIMSYS_R, MSG, IOS )
+	or
+		CALL UDSIOY( ROW, SOF, FILNAM, LUN,    Y, NFP_L, NLP_U,
+		             NUMFORM_R, DIMSYS_R, MSG, IOS )
+
+
+	The parameter usage is:
+
+		ROW - Read Or Write flag: 'R' => Read, 'W' => Write.
+
+		SOF - Specs or Full read flag: 'S' => read specs only
+
+		FILNAM - Name of UDS file (blank => file status is OPEN)
+
+		LUN - Logical unit number for UDS file I/O
+
+		X, Y - Measurement data arrays: X(NFP_L:NLP_U), Y(NFP_L:NLP_U)
+
+		NFP_L - Lower bound of X and Y array indices
+
+		NLP_U - Upper bound of X and Y array indices
+
+		NUMFORM_R - Floating point number format request flag:
+		            (by default converts to local platform format)
+		  VAX     => VAX format
+		  IEEE    => IEEE (PC) format
+		  SUN     => SUN format
+		  NONE    => No conversion applied
+
+		DIMSYS_R - Dimensional system request flag:
+		           (no default conversions are performed)
+		  MET     => Standard metric units
+		  ENG     => English units
+
+		MSG - Message flag (LOGICAL type)
+		  .TRUE.  => Allow UDSIOX messages
+		  .FALSE. => Suppress UDSIOX messages
+
+		IOS - Status flag (INTEGER):
+
+		   0 - OK, no errors
+		  >0 - FORTRAN IOSTAT error flag
+		  -1 - FORTRAN IOSTAT error flag
+		  -2 - Spec data read error
+		  -3 - Illegal NFP or NLP array dimension
+		  -4 - Measurement data read error
+		  -5 - Illegal ROW flag value specified
+		  -6 - Write error
+
+EXAMPLE:
+
+	CALL UDSIOX( 'R', 'F', 'IN.UDS', 1, X, Y, NFP_L, NLP_U,
+	             ' ', 'ENG', .TRUE., IOS )
+
+	This reads the entire file IN.UDS on unit 1, loading the X and Y
+	arrays with the file measurement data.  Default conversion to the
+	local platform floating point format and conversion to English
+	units are performed, if necessary.  Messages are allowed.
+
+NOTES:
+
+	To create UDS files from non-UDS source data the UDS fields should
+	be blank/zero-initialized before setting the relevant fields.  An
+	easy way to do this is to call UDSIO_INIT() from a module that
+	has INCLUDE 'udsiox.fi'.
