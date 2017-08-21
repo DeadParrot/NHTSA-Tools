@@ -14,7 +14,7 @@ if exist %1 (
   goto End
 )
 
-ifort /nologo /warn /warn:nodeclarations /warn:nounused /warn:nouncalled /nogen-interfaces /debug:none /O2-temps- %FortranFile% %2 %3 %4 %5 %6 %7 %8 %9
+ifort /nologo /warn /warn:nodeclarations /warn:nounused /warn:nouncalled /nogen-interfaces /debug:none /O2 %FortranFile% %2 %3 %4 %5 %6 %7 %8 %9
 
 set FortranFile=
 

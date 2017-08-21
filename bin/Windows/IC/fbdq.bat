@@ -14,7 +14,7 @@ if exist %1 (
   goto End
 )
 
-ifort /nologo /warn /warn:nodeclarations /warn:nounused /warn:nouncalled /nogen-interfaces /Z7 /Od /fp:precise /check:all /traceback /Gs0 /Qfp-stack-check /Qinit:snan-temps- %FortranFile% %2 %3 %4 %5 %6 %7 %8 %9
+ifort /nologo /warn /warn:nodeclarations /warn:nounused /warn:nouncalled /nogen-interfaces /Z7 /Od /fp:precise /check:all /traceback /Gs0 /Qfp-stack-check /Qinit:snan %FortranFile% %2 %3 %4 %5 %6 %7 %8 %9
 
 set FortranFile=
 
