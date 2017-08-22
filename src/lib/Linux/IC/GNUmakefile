@@ -57,7 +57,7 @@ $(SLB) : $(OBJ)
 # Dependencies
 ifneq ($(MAKECMDGOALS),dep)
 ifneq ($(MAKECMDGOALS),check)
-ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(MAKECMDGOALS),clear)
 ifneq ($(MAKECMDGOALS),clean)
 -include $(DEP)
 endif
