@@ -2,6 +2,8 @@
 
 # Dependency Generator for C/C++ and Fortran
 #
+# Language: Python (2.7 or 3.x)
+#
 # Version: 1.0.0
 #
 # Copyright (c) 2000-2017 Objexx Engineering, Inc. All Rights Reserved.
@@ -75,7 +77,7 @@ def main():
 
     # Parse source file name
     if not os.path.isfile( arg.source ):
-        raise IOError, 'Source file not found: ' + str( arg.source )
+        raise IOError( 'Source file not found: ' + str( arg.source ) )
     src_path = os.path.dirname( arg.source )
     src_name = os.path.basename( arg.source )
     src_base, src_ext = os.path.splitext( src_name )
@@ -83,7 +85,7 @@ def main():
     obj_name = src_base + '.' + arg.ext
     if src_ext: src_ext = src_ext[ 1: ]
     if not ( src_base and src_ext and ( C_ext.match( src_ext ) or F_ext.match( src_ext ) ) ):
-        raise ValueError, 'Not a recognized C/C++ or Fortran file name extension: ' + str( src_ext )
+        raise ValueError( 'Not a recognized C/C++ or Fortran file name extension: ' + str( src_ext ) )
 
     # Build dependencies
     tar = obj_name + ' ' + dep_name
@@ -112,7 +114,7 @@ def main():
             dep_str += ' ' + use + '.mod' # Assumes lowercase module naming
 
     # Write dependency file
-    dep_file = open( dep_name, 'wb' )
+    dep_file = open( dep_name, 'w' )
     dep_file.write( tar + ' : ' + dep_str + '\n' )
     dep_file.write( dep_str + ' :\n' )
     if mod_list: # Add rules for building .mod files: Implicit rules don't work because .mod file names != source file names
@@ -156,10 +158,9 @@ def C_deps( fname, fdeps = None, par_dir = None, quoted = False, add = True ):
             par_dir.insert( 0, par_new )
         else: # Flag not to pop since didn't push
             par_new = None
-        C_file = fname.endswith( ( '.c', '.h' ) ) # C file?
         for line in dfile:
             m = C_inc.match( line ) # #include <header> form
-            if m and not C_file:
+            if m :
                 dep = m.group( 1 )
                 if dep and ( dep not in fdeps ) and ( not C_sys.match( dep ) ):
                     C_deps( dep, fdeps, par_dir ) # Recurse
@@ -167,7 +168,7 @@ def C_deps( fname, fdeps = None, par_dir = None, quoted = False, add = True ):
                 m = C_inq.match( line ) # #include "header" form
                 if m:
                     dep = m.group( 1 )
-                    if dep and ( dep not in fdeps ):
+                    if dep and ( dep not in fdeps ) and ( not C_sys.match( dep ) ):
                         C_deps( dep, fdeps, par_dir, quoted = True ) # Recurse
         dfile.close()
         if par_new: del par_dir[ 0 ] # Pop parent dir from front of list
