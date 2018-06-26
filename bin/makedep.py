@@ -6,7 +6,7 @@
 #
 # Version: 1.0.0
 #
-# Copyright (c) 2000-2017 Objexx Engineering, Inc. All Rights Reserved.
+# Copyright (c) 2000-2018 Objexx Engineering, Inc. All Rights Reserved.
 
 # Notes:
 # . Dependency files for use with GNU make
@@ -25,7 +25,7 @@ import argparse, os, re
 C_ext = re.compile( '(c|cc|cpp|cxx|c\+\+|h|hh|hpp|hxx|h\+\+|ii|ipp|ixx|i\+\+)', re.I )
 C_inc = re.compile( '\s*#\s*include +<([^<>]+\.[^<>]+)>' ) # Exclude <name> C++ Standard Library headers
 C_inq = re.compile( '\s*#\s*include +"([^"]+)"' )
-C_sys = re.compile( 'sys/' ) # Exclude <sys/header> C++ system headers
+C_sys = re.compile( 'sys/' ) # Exclude <sys/header> C/C++ system headers
 C_path = None
 F_ext = re.compile( '(f|for|f90|f9x|f95|f03|f08|fh|fi|inc)', re.I )
 F_inc = re.compile( "\s*INCLUDE +'([^']+)'", re.I )
@@ -78,7 +78,6 @@ def main():
     # Parse source file name
     if not os.path.isfile( arg.source ):
         raise IOError( 'Source file not found: ' + str( arg.source ) )
-    src_path = os.path.dirname( arg.source )
     src_name = os.path.basename( arg.source )
     src_base, src_ext = os.path.splitext( src_name )
     dep_name = src_base + '.d'
@@ -139,14 +138,14 @@ def C_deps( fname, fdeps = None, par_dir = None, quoted = False, add = True ):
         gname = None
         if ( not os.path.isabs( fname ) ) and ( not os.path.isfile( fname ) ): # Search include path list
             if quoted: # Check relative to parent directories
-                for dir in par_dir:
-                    tname = os.path.join( dir, fname )
+                for adir in par_dir:
+                    tname = os.path.join( adir, fname )
                     if os.path.isfile( tname ):
                         if not ' ' in tname: gname = tname # Skip dependencies in paths with spaces for GNU Make compatibility
                         break
             if not gname: # Use include search path
-                for dir in C_path:
-                    tname = os.path.join( dir, fname )
+                for adir in C_path:
+                    tname = os.path.join( adir, fname )
                     if os.path.isfile( tname ):
                         if not ' ' in tname: gname = tname # Skip dependencies in paths with spaces for GNU Make compatibility
                         break
@@ -186,14 +185,14 @@ def F_deps( fname, fdeps = None, fmods = None, fuses = None, par_dir = None, quo
         gname = None
         if ( not os.path.isabs( fname ) ) and ( not os.path.isfile( fname ) ): # Search include path list
             if quoted: # Check relative to parent directories
-                for dir in par_dir:
-                    tname = os.path.join( dir, fname )
+                for adir in par_dir:
+                    tname = os.path.join( adir, fname )
                     if os.path.isfile( tname ):
                         if not ' ' in tname: gname = tname # Skip dependencies in paths with spaces for GNU Make compatibility
                         break
             if not gname: # Use include search path
-                for dir in F_path:
-                    tname = os.path.join( dir, fname )
+                for adir in F_path:
+                    tname = os.path.join( adir, fname )
                     if os.path.isfile( tname ):
                         if not ' ' in tname: gname = tname # Skip dependencies in paths with spaces for GNU Make compatibility
                         break
