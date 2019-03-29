@@ -96,8 +96,7 @@ def main():
     elif F_ext.match( src_ext ):
         dep_list, mod_list, use_list = F_deps( os.path.abspath( arg.source ), add = False )
         dep_list = list( dep_list )
-        mod_list = list( mod_list )
-        mod_list.sort()
+        mod_list = sorted( mod_list )
         use_list = list( use_list )
         use_list.sort()
     else:
@@ -113,7 +112,7 @@ def main():
             dep_str += ' ' + use + '.mod' # Assumes lowercase module naming
 
     # Write dependency file
-    dep_file = open( dep_name, 'w' )
+    dep_file = open( dep_name, mode = 'w' )
     dep_file.write( tar + ' : ' + dep_str + '\n' )
     dep_file.write( dep_str + ' :\n' )
     if mod_list: # Add rules for building .mod files: Implicit rules don't work because .mod file names != source file names
@@ -151,9 +150,9 @@ def C_deps( fname, fdeps = None, par_dir = None, quoted = False, add = True ):
                         break
         if gname is None: gname = fname
         if sys.version_info >= ( 3, 0 ):
-            dfile = open( gname, 'r', newline = None )
+            dfile = open( gname, mode = 'r', newline = None )
         else:
-            dfile = open( gname, 'rU' )
+            dfile = open( gname, mode = 'rU' )
         if add: fdeps.add( fname ) # Only add dependency if it is found
         par_new = os.path.dirname( os.path.abspath( gname ) )
         if ( not par_dir ) or ( par_dir[ 0 ] != par_new ): # Push parent dir onto front of list
@@ -201,9 +200,9 @@ def F_deps( fname, fdeps = None, fmods = None, fuses = None, par_dir = None, quo
                         break
         if gname is None: gname = fname
         if sys.version_info >= ( 3, 0 ):
-            dfile = open( gname, 'r', newline = None )
+            dfile = open( gname, mode = 'r', newline = None )
         else:
-            dfile = open( gname, 'rU' )
+            dfile = open( gname, mode = 'rU' )
         if add: fdeps.add( fname ) # Only add dependency if it is found
         par_new = os.path.dirname( os.path.abspath( gname ) )
         if ( not par_dir ) or ( par_dir[ 0 ] != par_new ): # Push parent dir onto front of list

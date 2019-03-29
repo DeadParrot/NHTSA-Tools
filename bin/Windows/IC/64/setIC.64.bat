@@ -2,6 +2,9 @@
 rem Intel Compiler 64-Bit Setup
 rem Put a custom version first in your PATH to adapt to your system
 
+rem Composer XE 2019
+if not "%IFORT_COMPILER19%" == "" "%IFORT_COMPILER19%\bin\compilervars.bat" intel64
+
 rem Composer XE 2016
 if not "%IFORT_COMPILER16%" == "" "%IFORT_COMPILER16%\bin\compilervars.bat" intel64
 
