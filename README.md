@@ -87,5 +87,5 @@ Full usage information can be obtained by entering /?? or -?? or ?? or /help or 
 
 ## License
 
-The software has been publically released by NHTSA with no license restrictions.
+The software has been publicly released by NHTSA with no license restrictions.
 This repository adds no license restrictions on its use.
