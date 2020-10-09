@@ -36,11 +36,11 @@ check :
 
 .PHONY : clear
 clear :
-	-rm -f *.d *.obj *.mod
+	-DEL *.d *.obj *.mod
 
 .PHONY : clean
 clean :
-	-rm -f *.d *.obj *.mod $(subst \,/,$(APP))
+	-DEL *.d *.obj *.mod $(APP)
 
 # Dependencies
 ifneq ($(MAKECMDGOALS),dep)

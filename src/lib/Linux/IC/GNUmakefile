@@ -44,14 +44,14 @@ clean :
 
 # Library from objects
 $(SLB) : $(OBJ)
-	@-rm -f $(filter-out $(DEP),$(wildcard *.d)) # Prune obs deps
-	@-rm -f $(filter-out $(OBJ),$(wildcard *.o)) # Prune obs objs
+	@-rm -f $(filter-out $(DEP),$(wildcard *.d))
+	@-rm -f $(filter-out $(OBJ),$(wildcard *.o))
 	$(AR) $(ARFLAGS) $@ $?
 
 # Library from objects member-wise: Slower? More accurate since member date, not library date?
 #$(SLB)($(OBJ)) : $(OBJ)
-#	@-rm -f $(filter-out $(DEP),$(wildcard *.d)) # Prune obs deps
-#	@-rm -f $(filter-out $(OBJ),$(wildcard *.o)) # Prune obs objs
+#	@-rm -f $(filter-out $(DEP),$(wildcard *.d))
+#	@-rm -f $(filter-out $(OBJ),$(wildcard *.o))
 #	$(AR) $(ARFLAGS) $@ $?
 
 # Dependencies

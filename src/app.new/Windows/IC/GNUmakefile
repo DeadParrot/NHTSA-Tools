@@ -38,11 +38,11 @@ check :
 
 .PHONY : clear
 clear :
-	-rm -f *.d *.obj *.mod
+	-DEL *.d *.obj *.mod
 
 .PHONY : clean
 clean :
-	-rm -f *.d *.obj *.mod $(subst \,/,$(APP))
+	-DEL *.d *.obj *.mod $(APP)
 
 appname.obj : appname.f90 # Prevent make from picking up .for version
 	@$(MAKEDEPEND) $<

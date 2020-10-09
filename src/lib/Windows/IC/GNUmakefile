@@ -36,22 +36,22 @@ check :
 
 .PHONY : clear
 clear :
-	-rm -f *.d *.obj *.mod
+	-DEL *.d *.obj *.mod
 
 .PHONY : clean
 clean :
-	-rm -f *.d *.obj *.mod $(subst \,/,$(SLB))
+	-DEL *.d *.obj *.mod $(SLB)
 
 # Library from objects: Rebuild whole library ($^ instead of $?): Could do remove then add but fails for new lib
 $(SLB) : $(OBJ)
-	@-rm -f $(filter-out $(DEP),$(wildcard *.d)) # Prune obs deps
-	@-rm -f $(filter-out $(OBJ),$(wildcard *.obj)) # Prune obs objs
+	@-FOR %%F in ($(filter-out $(DEP),$(wildcard *.d))) DO DEL %%F
+	@-FOR %%F in ($(filter-out $(OBJ),$(wildcard *.obj))) DO DEL %%F
 	$(AR) $(ARFLAGS) /out:$@ $^
 
 # Library from objects member-wise: Slower? More accurate since member date, not library date?
 #$(SLB)($(OBJ)) : $(OBJ)
-#	@-rm -f $(filter-out $(DEP),$(wildcard *.d)) # Prune obs deps
-#	@-rm -f $(filter-out $(OBJ),$(wildcard *.obj)) # Prune obs objs
+#	@-FOR %%F in ($(filter-out $(DEP),$(wildcard *.d))) DO DEL %%F
+#	@-FOR %%F in ($(filter-out $(OBJ),$(wildcard *.obj))) DO DEL %%F
 #	$(AR) $(ARFLAGS) /out:$@ $?
 
 # Dependencies

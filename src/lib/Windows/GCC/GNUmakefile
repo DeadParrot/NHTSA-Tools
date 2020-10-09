@@ -36,22 +36,22 @@ check :
 
 .PHONY : clear
 clear :
-	-rm -f *.d *.o *.mod
+	-DEL *.d *.o *.mod
 
 .PHONY : clean
 clean :
-	-rm -f *.d *.o *.mod $(SLB)
+	-DEL *.d *.o *.mod $(SLB)
 
 # Library from objects
 $(SLB) : $(OBJ)
-	@-rm -f $(filter-out $(DEP),$(wildcard *.d)) # Prune obs deps
-	@-rm -f $(filter-out $(OBJ),$(wildcard *.o)) # Prune obs objs
+	@-FOR %%F in ($(filter-out $(DEP),$(wildcard *.d))) DO DEL %%F
+	@-FOR %%F in ($(filter-out $(OBJ),$(wildcard *.o))) DO DEL %%F
 	$(AR) $(ARFLAGS) $@ $?
 
 # Library from objects member-wise: Slower? More accurate since member date, not library date?
 #$(SLB)($(OBJ)) : $(OBJ)
-#	@-rm -f $(filter-out $(DEP),$(wildcard *.d)) # Prune obs deps
-#	@-rm -f $(filter-out $(OBJ),$(wildcard *.o)) # Prune obs objs
+#	@-FOR %%F in ($(filter-out $(DEP),$(wildcard *.d))) DO DEL %%F
+#	@-FOR %%F in ($(filter-out $(OBJ),$(wildcard *.o))) DO DEL %%F
 #	$(AR) $(ARFLAGS) $@ $?
 
 # Dependencies
