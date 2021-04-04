@@ -7,4 +7,4 @@ fi
 
 export PATH=$PATH:$NHTSA/bin/Linux:$NHTSA/bin
 
-source setPython
+#source setPython

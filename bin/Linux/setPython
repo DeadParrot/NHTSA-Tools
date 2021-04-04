@@ -4,18 +4,108 @@
 # Put a custom version first in your PATH to adapt to your system
 
 # System Python setup
-if [ -d "/usr/local/lib64/python2.7" ]; then
+if [ -d "/usr/local/lib64/python3.10" ]; then
+    export PYTHON_DIR=/usr/local/lib64/python3.10
+    export PYTHON_INC=/usr/local/include/python3.10
+    export PYTHON_LIB=python3.10
+elif [ -d "/usr/local/lib/python3.10" ]; then
+    export PYTHON_DIR=/usr/local/lib/python3.10
+    export PYTHON_INC=/usr/local/include/python3.10
+    export PYTHON_LIB=python3.10
+elif [ -d "/usr/lib64/python3.10" ]; then
+    export PYTHON_DIR=/usr/lib64/python3.10
+    export PYTHON_INC=/usr/include/python3.10
+    export PYTHON_LIB=python3.10
+elif [ -d "/usr/lib/python3.10" ]; then
+    export PYTHON_DIR=/usr/lib/python3.10
+    export PYTHON_INC=/usr/include/python3.10
+    export PYTHON_LIB=python3.10
+
+elif [ -d "/usr/local/lib64/python3.9" ]; then
+    export PYTHON_DIR=/usr/local/lib64/python3.9
+    export PYTHON_INC=/usr/local/include/python3.9
+    export PYTHON_LIB=python3.9
+elif [ -d "/usr/local/lib/python3.9" ]; then
+    export PYTHON_DIR=/usr/local/lib/python3.9
+    export PYTHON_INC=/usr/local/include/python3.9
+    export PYTHON_LIB=python3.9
+elif [ -d "/usr/lib64/python3.9" ]; then
+    export PYTHON_DIR=/usr/lib64/python3.9
+    export PYTHON_INC=/usr/include/python3.9
+    export PYTHON_LIB=python3.9
+elif [ -d "/usr/lib/python3.9" ]; then
+    export PYTHON_DIR=/usr/lib/python3.9
+    export PYTHON_INC=/usr/include/python3.9
+    export PYTHON_LIB=python3.9
+
+elif [ -d "/usr/local/lib64/python3.8" ]; then
+    export PYTHON_DIR=/usr/local/lib64/python3.8
+    export PYTHON_INC=/usr/local/include/python3.8
+    export PYTHON_LIB=python3.8
+elif [ -d "/usr/local/lib/python3.8" ]; then
+    export PYTHON_DIR=/usr/local/lib/python3.8
+    export PYTHON_INC=/usr/local/include/python3.8
+    export PYTHON_LIB=python3.8
+elif [ -d "/usr/lib64/python3.8" ]; then
+    export PYTHON_DIR=/usr/lib64/python3.8
+    export PYTHON_INC=/usr/include/python3.8
+    export PYTHON_LIB=python3.8
+elif [ -d "/usr/lib/python3.8" ]; then
+    export PYTHON_DIR=/usr/lib/python3.8
+    export PYTHON_INC=/usr/include/python3.8
+    export PYTHON_LIB=python3.8
+
+elif [ -d "/usr/local/lib64/python3.7" ]; then
+    export PYTHON_DIR=/usr/local/lib64/python3.7
+    export PYTHON_INC=/usr/local/include/python3.7
+    export PYTHON_LIB=python3.7
+elif [ -d "/usr/local/lib/python3.7" ]; then
+    export PYTHON_DIR=/usr/local/lib/python3.7
+    export PYTHON_INC=/usr/local/include/python3.7
+    export PYTHON_LIB=python3.7
+elif [ -d "/usr/lib64/python3.7" ]; then
+    export PYTHON_DIR=/usr/lib64/python3.7
+    export PYTHON_INC=/usr/include/python3.7
+    export PYTHON_LIB=python3.7
+elif [ -d "/usr/lib/python3.7" ]; then
+    export PYTHON_DIR=/usr/lib/python3.7
+    export PYTHON_INC=/usr/include/python3.7
+    export PYTHON_LIB=python3.7
+
+elif [ -d "/usr/local/lib64/python3.6" ]; then
+    export PYTHON_DIR=/usr/local/lib64/python3.6
+    export PYTHON_INC=/usr/local/include/python3.6
+    export PYTHON_LIB=python3.6
+elif [ -d "/usr/local/lib/python3.6" ]; then
+    export PYTHON_DIR=/usr/local/lib/python3.6
+    export PYTHON_INC=/usr/local/include/python3.6
+    export PYTHON_LIB=python3.6
+elif [ -d "/usr/lib64/python3.6" ]; then
+    export PYTHON_DIR=/usr/lib64/python3.6
+    export PYTHON_INC=/usr/include/python3.6
+    export PYTHON_LIB=python3.6
+elif [ -d "/usr/lib/python3.6" ]; then
+    export PYTHON_DIR=/usr/lib/python3.6
+    export PYTHON_INC=/usr/include/python3.6
+    export PYTHON_LIB=python3.6
+
+elif [ -d "/usr/local/lib64/python2.7" ]; then
     export PYTHON_DIR=/usr/local/lib64/python2.7
     export PYTHON_INC=/usr/local/include/python2.7
+    export PYTHON_LIB=python2.7
 elif [ -d "/usr/local/lib/python2.7" ]; then
     export PYTHON_DIR=/usr/local/lib/python2.7
     export PYTHON_INC=/usr/local/include/python2.7
+    export PYTHON_LIB=python2.7
 elif [ -d "/usr/lib64/python2.7" ]; then
     export PYTHON_DIR=/usr/lib64/python2.7
     export PYTHON_INC=/usr/include/python2.7
+    export PYTHON_LIB=python2.7
 elif [ -d "/usr/lib/python2.7" ]; then
     export PYTHON_DIR=/usr/lib/python2.7
     export PYTHON_INC=/usr/include/python2.7
+    export PYTHON_LIB=python2.7
+
 else
     echo Python not found!
 fi
@@ -33,7 +123,6 @@ fi
 #export LD_LIBRARY_PATH=${PYTHON_DIR}/lib:${LD_LIBRARY_PATH}
 
 # Universal setup
-export PYTHON_LIB=python2.7
 export PYTHON_LIB_DIR=${PYTHON_DIR}/config
 export PYTHON_NUMPY_INC=${PYTHON_DIR}/site-packages/numpy/core/include
 export PYTHONDONTWRITEBYTECODE=x
